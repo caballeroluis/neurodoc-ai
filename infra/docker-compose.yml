@@ -1,0 +1,71 @@
+version: '3.8'
+
+networks:
+  neurodoc_network:
+    name: neurodoc_private_mesh
+    driver: bridge
+
+volumes:
+  gitea_data:
+  postgres_data:
+  chroma_data:
+
+services:
+  gitea:
+    image: gitea/gitea:1.21.4
+    container_name: neurodoc_git_hub
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=postgres_engine:5432
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=postgres
+      - GITEA__database__PASSWD=${DB_PASSWORD}
+    volumes:
+      - gitea_data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    depends_on:
+      - postgres_engine
+    networks:
+      - neurodoc_network
+    restart: always
+
+  postgres_engine:
+    image: ankane/pgvector:latest
+    container_name: neurodoc_postgres_core
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=neurodoc_enterprise
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - neurodoc_network
+    restart: always
+
+  chromadb_engine:
+    image: chromadb/chroma:0.4.24
+    container_name: neurodoc_chroma_vectors
+    volumes:
+      - chroma_data:/chroma/data
+    ports:
+      - "8000:8000"
+    networks:
+      - neurodoc_network
+    restart: always
+
+  cloudflare_tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: neurodoc_cloudflare_edge
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TOKEN}
+    depends_on:
+      - gitea
+    networks:
+      - neurodoc_network
+    restart: always
