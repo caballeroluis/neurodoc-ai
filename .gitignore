@@ -1,0 +1,21 @@
+# Secret and Environment Variables
+.env
+*.env
+.env.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Database and Runtime Storage
+infra/gitea_data/
+infra/postgres_data/
+infra/chroma_data/
+
+# Backend Dependency Folders
+node_modules/
+bin/
+build/
+.gradle/
+target/
+*.log
