@@ -48,11 +48,11 @@ neurodoc-ai/
 
 The bare-metal environment is engineered under enterprise standards to completely mitigate the financial drain of third-party cloud credits:
 
-* **Bare-Metal OS & Orchestration:** Central server running **Debian 13** managed via **Docker Compose**. Hybrid persistence is achieved using **ChromaDB** (semantic RAG orchestration) coupled with **PostgreSQL + pgvector** (correlated relational data).
-* **Private GitOps Hub (Gitea Engine):** Self-hosted **Gitea** service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs **Gitea Actions** pipelines natively, operating with full sovereignty inside the local area network.
-* **Zero-Trust Network Governance:** Edge routing secured by a **Cloudflare Tunnel (`cloudflared`)**. This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
-* **Hybrid Integration Pipeline:** A **Gitea/GitHub Self-Hosted Runner** agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
-* **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local video memory (3GB VRAM) to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger hardware nodes.
+* **Bare-Metal OS & Orchestration:** Central host managed via Docker Compose. Hybrid persistence is achieved using ChromaDB (semantic RAG orchestration) coupled with PostgreSQL + pgvector (correlated relational data).
+* **Private GitOps Hub (Gitea Engine):** Self-hosted Gitea service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs Gitea Actions pipelines natively, operating with full sovereignty inside the local area network.
+* **Zero-Trust Network Governance:** Edge routing secured by a Cloudflare Tunnel (cloudflared). This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
+* **Hybrid Integration Pipeline:** A Gitea/GitHub Self-Hosted Runner agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
+* **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
 ---
 
 ## 🏢 Targeted Core Use Cases & Solved Market Flaws
