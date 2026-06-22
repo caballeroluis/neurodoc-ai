@@ -52,8 +52,7 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Private GitOps Hub (Gitea Engine):** Self-hosted **Gitea** service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs **Gitea Actions** pipelines natively, operating with full sovereignty inside the local area network.
 * **Zero-Trust Network Governance:** Edge routing secured by a **Cloudflare Tunnel (`cloudflared`)**. This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
 * **Hybrid Integration Pipeline:** A **Gitea/GitHub Self-Hosted Runner** agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
-* **Dedicated Local Inference:** An **Ollama engine running optimized 8B models (Llama 3)**. The architecture leverages the unified memory of local hardware (Mac M1, 16GB RAM) for low-latency inference while guaranteeing complete privacy from external APIs.
-
+* **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local video memory (3GB VRAM) to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger hardware nodes.
 ---
 
 ## 🏢 Targeted Core Use Cases & Solved Market Flaws
