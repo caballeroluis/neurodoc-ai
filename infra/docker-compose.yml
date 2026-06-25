@@ -88,20 +88,20 @@ services:
       - neurodoc_network
     restart: always
 
-  # 🐍 LOCAL AI ORCHESTRATOR (FastAPI + Local Inference Passthrough)
-  ai_orchestrator_python:
-    image: neurodoc/ai-orchestrator:latest
-    container_name: neurodoc_python_rag
+  # 🐍 SOVEREIGN MODEL CONTEXT PROTOCOL (MCP) HUB & RAG ENGINE
+  mcp_server_python:
+    image: neurodoc/mcp-server:latest
+    container_name: neurodoc_python_mcp
     deploy:
       resources:
-        resources:
-          reservations:
-            devices:
-              - driver: nvidia
-                count: all
-                capabilities: [gpu]
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     environment:
       - CHROMA_API_HOST=chromadb_engine
+      - MCP_SERVER_MODE=standalone
     depends_on:
       - chromadb_engine
     networks:

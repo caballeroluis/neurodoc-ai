@@ -34,6 +34,8 @@ neurodoc-ai/
 │   │   └── infrastructure/    <-- Ports & Adapters (Plugs for PostgreSQL, RAG, and interfaces)
 ├── ai-governance/             <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
 │   └── src/main.rs            <-- Blistering fast 'git diff' stream capture & data encoding
+├── mcp-server-python/         <-- Sovereign Model Context Protocol (MCP) Hub & RAG Engine
+│   └── src/main.py            <-- Local FastAPI server exposing standardized tools to external IDEs
 ├── frontend-control/          <-- Presentation Layer: Visual Dashboard (Agility Semaphores)
 ├── docs/                      <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
 │   ├── 01-isolation-rules.md  <-- Core domain isolation metrics
@@ -51,6 +53,7 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Bare-Metal OS & Orchestration:** Central host managed via Docker Compose. Hybrid persistence is achieved using ChromaDB (semantic RAG orchestration) coupled with PostgreSQL + pgvector (correlated relational data).
 * **Private GitOps Hub (Gitea Engine):** Self-hosted Gitea service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs Gitea Actions pipelines natively, operating with full sovereignty inside the local area network.
 * **Zero-Trust Network Governance:** Edge routing secured by a Cloudflare Tunnel (cloudflared). This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
+* **Standardized Context Sharing (Local MCP Hub):** Rather than isolating semantic knowledge within closed scripts, the Python subsystem exposes a native **Model Context Protocol (MCP)** server. This acts as a standardized data bridge, allowing external IDE extensions (e.g., Cursor, Cline, or localized development utilities) to query ChromaDB style guides and stream architecture axioms simultaneously, completely neutralizing cross-tool context blindness.
 * **Hybrid Integration Pipeline:** A Gitea/GitHub Self-Hosted Runner agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
 * **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
 ---
@@ -59,9 +62,9 @@ The bare-metal environment is engineered under enterprise standards to completel
 
 The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly specialized modules addressing three real-world sectors:
 
-### 1. For Software Developers (Active Code Governance)
-* **The Problem:** Exponential technical debt degradation and architectural decay across enterprise repositories due to unregulated code injection from generative AI tools. Passive documentation silos (.md files or wikis) fail under strict delivery deadlines because they rely on manual developer compliance.
-* **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust `ai-governance` binary analyzes `git diff` deltas on every push, queries ChromaDB for contextual compliance, and automatically blocks merges if violations are detected.
+### 1. For Software Developers (Active Code Governance & Environmental Memory)
+* **The Problem:** Exponential technical debt degradation across enterprise repositories due to unregulated code injection from generative AI tools. Short-lived commercial AI assistants function within static silos, treating every prompt as a blank slate. Lacking a persistent memory of the project environment, they introduce volatile, hazardous "Auto-Fix" code patches under tight delivery deadlines.
+* **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust `ai-governance` binary captures `git diff` deltas on every commit push. Instead of evaluating changes in isolation, the system anchors the delta stream against the project's global architectural context and long-term environmental guidelines indexed inside ChromaDB. It automatically blocks merges if compliance violations are detected, ensuring context always wins over raw execution speed.
 
 ### 2. For Bike Shops / Specialized Retailers (Inventory & Cash Flow Optimization)
 * **The Problem:** Recurrent cash flow crunches triggered by passive procurement management. This leads to costly out-of-stock scenarios during high-demand peaks alongside stagnant capital tied up in low-turnover items.
@@ -91,5 +94,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 * [ ] **Phase 1: Core Infra Setup** – Unified Docker orchestration of **Gitea Platform**, ChromaDB, PostgreSQL (pgvector), and the Cloudflare Tunnel engine.
 * [ ] **Phase 2: Git Interceptor Core** – Finalizing the native `ai-governance` Rust component for efficient `git diff` analysis.
-* [ ] **Phase 3: Visual Agility Semaphore** – Frontend dashboard monitoring what percentage of the domain layer remains uncontaminated by external dependencies.
-* [ ] **Phase 4: Multi-tenant Metadata Isolation** – Strict database row-level locking and vector namespace isolation to guarantee total regulatory compliance.
+* [ ] **Phase 3: Standardized MCP Layer** – Implementing the Python Model Context Protocol hub to stream unified compliance rules to third-party IDE nodes.
+* [ ] **Phase 4: Visual Agility Semaphore** – Frontend dashboard monitoring what percentage of the domain layer remains uncontaminated by external dependencies.
+* [ ] **Phase 5: Multi-tenant Metadata Isolation** – Strict database row-level locking and vector namespace isolation to guarantee total regulatory compliance.
