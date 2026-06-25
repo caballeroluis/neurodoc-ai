@@ -8,7 +8,7 @@
 ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F.svg?style=for-the-badge&logo=node.js&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-%23000000.svg?style=for-the-badge&logo=rust&logo=rust&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571.svg?style=for-the-badge&logo=fastapi)
@@ -26,20 +26,20 @@ This repository centralizes the evolutionary roadmap of the ecosystem. The archi
 
 ```text
 neurodoc-ai/
-├── .github/workflows/         <-- CI/CD: Automated pre-flight quality gates (Public Showcase)
-├── .gitea/workflows/          <-- CI/CD: On-Premise GitOps engine (Hermetic Sovereignty)
-├── backend-core/              <-- Decoupled Business Engines (Spring Boot / Node.js)
+├── .github/workflows/         <-- CI/CD: Public showcase pipeline (Automated testing gates)
+├── .gitea/workflows/          <-- CI/CD: On-Premise GitOps engine (Hermetic local execution)
+├── backend-core/              <-- The Single Source of Truth: Core Domain (Spring Boot 3)
 │   ├── src/main/java/.../
-│   │   ├── domain/            <-- Pure Domain Core (Framework-less Business Rules)
-│   │   └── infrastructure/    <-- Ports & Adapters (Interchangeable Persistence & Interfaces)
-├── ai-governance/             <-- The Active Guardian (FDE Pipeline Interceptor)
-│   └── ai-validator.js        <-- Real-time semantic commit delta analysis
-├── frontend-control/          <-- Visual Dashboard featuring Agility Semaphores & Metrics
-├── docs/                      <-- Engineering Knowledge Base (Indexed into Vector DB)
-│   ├── 01-isolation-rules.md  <-- Core domain isolation axioms
-│   └── 02-hexagonal-layers.md <-- Interface plugs and technical specifications
+│   │   ├── domain/            <-- Pure Framework-less Business Rules (Compliance axioms)
+│   │   └── infrastructure/    <-- Ports & Adapters (Plugs for PostgreSQL, RAG, and interfaces)
+├── ai-governance/             <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
+│   └── src/main.rs            <-- Blistering fast 'git diff' stream capture & data encoding
+├── frontend-control/          <-- Presentation Layer: Visual Dashboard (Agility Semaphores)
+├── docs/                      <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
+│   ├── 01-isolation-rules.md  <-- Core domain isolation metrics
+│   └── 02-hexagonal-layers.md <-- Interface plugs and hardware technical specifications
 └── infra/                     <-- Homelab Orchestration Hub
-    └── docker-compose.yml     <-- Local network topology & advanced persistence layers
+    └── docker-compose.yml     <-- Local network topology & cross-runtime persistence layers
 ```
 
 ---
@@ -61,7 +61,7 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ### 1. For Software Developers (Active Code Governance)
 * **The Problem:** Exponential technical debt degradation and architectural decay across enterprise repositories due to unregulated code injection from generative AI tools. Passive documentation silos (.md files or wikis) fail under strict delivery deadlines because they rely on manual developer compliance.
-* **The NeuroDoc Solution:** Automated pre-flight interception during the Continuous Integration cycle. **Developers simply drop their architectural rules and style guides as Markdown files; the pipeline autonomously monitors the repository on their behalf.** The validator (`ai-validator.js`) extracts git diff deltas on every push, queries ChromaDB for contextual style alignment, and commands the local LLM to automatically block the merge if design violations are found.
+* **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust `ai-governance` binary analyzes `git diff` deltas on every push, queries ChromaDB for contextual compliance, and automatically blocks merges if violations are detected.
 
 ### 2. For Bike Shops / Specialized Retailers (Inventory & Cash Flow Optimization)
 * **The Problem:** Recurrent cash flow crunches triggered by passive procurement management. This leads to costly out-of-stock scenarios during high-demand peaks alongside stagnant capital tied up in low-turnover items.
@@ -90,6 +90,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## 📈 Roadmap Milestones & Horizon (In Development)
 
 * [ ] **Phase 1: Core Infra Setup** – Unified Docker orchestration of **Gitea Platform**, ChromaDB, PostgreSQL (pgvector), and the Cloudflare Tunnel engine.
-* [ ] **Phase 2: Git Interceptor Core** – Completion of the `ai-validator.js` Node.js script for molecular delta extraction via `git diff`.
+* [ ] **Phase 2: Git Interceptor Core** – Finalizing the native `ai-governance` Rust component for efficient `git diff` analysis.
 * [ ] **Phase 3: Visual Agility Semaphore** – Frontend dashboard monitoring what percentage of the domain layer remains uncontaminated by external dependencies.
 * [ ] **Phase 4: Multi-tenant Metadata Isolation** – Strict database row-level locking and vector namespace isolation to guarantee total regulatory compliance.

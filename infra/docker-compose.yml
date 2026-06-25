@@ -1,5 +1,8 @@
-version: '3.8'
+## Parameterized Orchestration Blueprint
 
+The entire ecosystem is containerized using modern, version-less Docker Compose specifications. The local topology runs on a private, isolated mesh network with full storage persistence:
+
+```yaml
 networks:
   neurodoc_network:
     name: neurodoc_private_mesh
@@ -69,3 +72,39 @@ services:
     networks:
       - neurodoc_network
     restart: always
+
+  # ☕ THE IMMUTABLE BUSINESS CORE (Spring Boot 3)
+  backend_core_java:
+    image: neurodoc/backend-core:latest
+    container_name: neurodoc_java_domain
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_HOST=postgres_engine
+      - CHROMA_HOST=chromadb_engine
+    depends_on:
+      - postgres_engine
+      - chromadb_engine
+    networks:
+      - neurodoc_network
+    restart: always
+
+  # 🐍 LOCAL AI ORCHESTRATOR (FastAPI + Local Inference Passthrough)
+  ai_orchestrator_python:
+    image: neurodoc/ai-orchestrator:latest
+    container_name: neurodoc_python_rag
+    deploy:
+      resources:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                count: all
+                capabilities: [gpu]
+    environment:
+      - CHROMA_API_HOST=chromadb_engine
+    depends_on:
+      - chromadb_engine
+    networks:
+      - neurodoc_network
+    restart: always
+```
