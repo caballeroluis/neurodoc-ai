@@ -126,12 +126,14 @@ Most software engineers and tech-industry professionals own high-end personal ga
  🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)
          │                           │                           │                           │
  [ Dev 1: Home Rig ]         [ Dev 2: Home Rig ]         [ Dev 3: Home Rig ]         [ Dev 4: Home Rig ]
- (RTX 3090 • Idle VRAM)      (RTX 4090 • Idle VRAM)      (RTX 4080 • Idle VRAM)      (RTX 3090 • Idle VRAM)
+ (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)
 ```
 
-#### ⚙️ Technical Mechanics under Hexagonal Rules:
+#### ⚙️ Technical Mechanics under Two-Tier Load Balancing:
 1. **The Sovereign Home Node:** Employees register their home Homelab machines by spinning up a hermetic, lightweight NeuroDoc slave container that securely exposes their local CUDA runtime through automated, outbound **Cloudflare Tunnels** (avoiding open residential ports).
-2. **Semantic Load Balancing:** The Spring Boot core domain at the office treats these home nodes as basic infrastructural adapters. When a commit push triggers an asset/code compliance check, the central balancer measures latency and active VRAM memory blocks, routing the lightweight encrypted text delta to whichever employee's home machine has idle compute capacity.
+2. **Two-Tier Balanced Inferencia (Network + Hardware Cascade):**
+   * **Level 1 (Network Load Balancing):** The Spring Boot core domain at the office treats these home nodes as abstract infrastructural adapters. When a commit push triggers an asset check, the central balancer routes the text delta to whichever employee's home machine has idle capacity.
+   * **Level 2 (Local GPU Optimization via vLLM):** To prevent multiple simultaneous network requests from crashing a single developer's machine, each home container runs **vLLM** instead of standard single-user inference engines. By leveraging **PagedAttention**, the home node slices its VRAM (e.g., an RTX 3090's 24GB) into virtual memory pages, managing parallel user queries concurrently without triggering Out-Of-Memory (OOM) crashes.
 3. **The "Proof-of-Inference" Payroll Incentive:** The platform monitors the exact number of tokens processed by each node. Instead of mining traditional volatile cryptocurrencies, workers "mine" internal corporate credits, translating into direct financial bonuses on their monthly payroll to subsidize hardware depreciation and domestic electricity costs.
 
 This framework shifts corporate infrastructure scaling: the company gains a highly elastic, sovereign, and radical zero-cloud-cost compute topography, while engineering teams monetize their hardware assets during the day.
