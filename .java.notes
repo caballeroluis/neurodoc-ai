@@ -1,0 +1,51 @@
+// =============================================================================
+// NEURODOC AI - DETERMINISTIC DOMAIN ARCHITECTURE NOTES (FUTURE IMPLEMENTATION)
+// Target Module: backend-core / Layer: Domain Logic Rules
+// Objective: Neutralize AI non-determinism and eliminate "Prompt Debt".
+// Strategy: Separate Semantic Extraction (AI) from Final Governance Verdict (Java).
+// =============================================================================
+
+package com.neurodoc.core.domain.model;
+
+import java.util.Map;
+
+/**
+ * Concrete implementation blueprint of the CodeValidatorPort.
+ * Enforces zero trust against non-deterministic LLM evaluation outputs.
+ */
+public class DeterministicArchitectureValidator implements CodeValidatorPort {
+
+    // Rigid enterprise thresholds managed strictly by the business logic
+    private static final double MAX_ALLOWABLE_VECTOR_DISTANCE = 0.45;
+    private static final int MAX_ILLEGAL_CROSS_DEPENDENCIES = 0;
+
+    /**
+     * Executes immutable, deterministic business rules over raw metadata metrics.
+     * Prevents "Plausible Code Decay" by completely isolating the pipeline gate 
+     * from the volatile, non-deterministic nature of underlying local LLMs.
+     */
+    @Override
+    public boolean evaluateDeterministicCompliance(
+            String componentLayer, 
+            double vectorDistance, 
+            int crossLayerDependencies
+    ) {
+        // Rule 1: Structural Context Check (Enforce strict distance boundaries against ChromaDB style guides)
+        if (vectorDistance > MAX_ALLOWABLE_VECTOR_DISTANCE) {
+            System.err.printf("❌ [Gate Blocked]: Semantic drift detected. Vector distance %.4f exceeds threshold %.4f\n", 
+                    vectorDistance, MAX_ALLOWABLE_VECTOR_DISTANCE);
+            return false;
+        }
+
+        // Rule 2: Strict Hexagonal Isolation (Zero tolerance for dependency leaks across domain packages)
+        if ("DOMAIN".equalsIgnoreCase(componentLayer) && crossLayerDependencies > MAX_ILLEGAL_CROSS_DEPENDENCIES) {
+            System.err.printf("❌ [Gate Blocked]: Hexagonal contamination. Found %d illegal cross-layer references.\n", 
+                    crossLayerDependencies);
+            return false;
+        }
+
+        // Rule 3: Deterministic Pass (Approved under rigid system mathematical constraints)
+        System.out.println("✅ [Gate Approved]: Structural context complies perfectly with system axioms.");
+        return true;
+    }
+}
