@@ -101,6 +101,46 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---
 
+## 🧠 Architectural Incubator: Decentralized Design Framework
+
+This section operates as an open technical sandbox for experimental blueprints. Community members and system architects are welcome to submit critiques, alternative topologies, or brand-new paradigm designs by opening an Issue labeled with the next chronological index.
+
+### 📊 [IDEA-001] The Gamers Compute Grid (Crowdsourced VRAM Mining)
+
+#### 🗺️ Origin of the Idea: Real-World Infrasignment
+This architecture paradigm was conceived following a technical alignment discussion with software engineer Franco Ariel Marcuzzi regarding his `franco-proxy-llm` project. Franco encountered a recurrent corporate bottleneck: the company's servers lacked AI compute capacity, forcing him to securely expose his personal home hardware via an API-key proxy to salvage a backend production demo. 
+
+By analyzing his infrastructure topology, **NeuroDoc AI** expanded the framework from a single-machine emergency proxy into a standardized, multi-node decentralized cluster model that companies can leverage natively.
+
+* **Status:** Conceptual Draft / Architectural Design Phase
+* **Target Flaw:** Critical high-concurrency VRAM bottlenecks during enterprise operational peaks without scaling corporate data center CapEx.
+
+#### 🎮 The Philosophy: Monetizing Idle Gaming Hardware
+Most software engineers and tech-industry professionals own high-end personal gaming setups at home equipped with massive consumer GPUs (e.g., NVIDIA RTX 3090, 4080, 4090) that sit completely idle during standard working hours. Instead of forcing the enterprise to purchase expensive cloud clusters or private server farms, **NeuroDoc AI** proposes an abstract, interchangeable compute grid utilizing distributed consumer hardware.
+
+```text
+ [ Corporate Codebase ] ── (Semantic Load Balancer) ──► [ Encrypted Git Diff Packets ]
+                                                                 │
+         ┌───────────────────────────┬───────────────────────────┴───────────────────────────┐
+         ▼                           ▼                           ▼                           ▼
+ 🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)
+         │                           │                           │                           │
+ [ Dev 1: Home Rig ]         [ Dev 2: Home Rig ]         [ Dev 3: Home Rig ]         [ Dev 4: Home Rig ]
+ (RTX 3090 • Idle VRAM)      (RTX 4090 • Idle VRAM)      (RTX 4080 • Idle VRAM)      (RTX 3090 • Idle VRAM)
+```
+
+#### ⚙️ Technical Mechanics under Hexagonal Rules:
+1. **The Sovereign Home Node:** Employees register their home Homelab machines by spinning up a hermetic, lightweight NeuroDoc slave container that securely exposes their local CUDA runtime through automated, outbound **Cloudflare Tunnels** (avoiding open residential ports).
+2. **Semantic Load Balancing:** The Spring Boot core domain at the office treats these home nodes as basic infrastructural adapters. When a commit push triggers an asset/code compliance check, the central balancer measures latency and active VRAM memory blocks, routing the lightweight encrypted text delta to whichever employee's home machine has idle compute capacity.
+3. **The "Proof-of-Inference" Payroll Incentive:** The platform monitors the exact number of tokens processed by each node. Instead of mining traditional volatile cryptocurrencies, workers "mine" internal corporate credits, translating into direct financial bonuses on their monthly payroll to subsidize hardware depreciation and domestic electricity costs.
+
+This framework shifts corporate infrastructure scaling: the company gains a highly elastic, sovereign, and radical zero-cloud-cost compute topography, while engineering teams monetize their hardware assets during the day.
+
+---
+*💡 Have a radical optimization or want to propose **[IDEA-002]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+
+---
+
 ## 📈 Roadmap Milestones & Horizon (In Development)
 
 * [ ] **Phase 1: Core Infra Setup** – Unified Docker orchestration of **Gitea Platform**, ChromaDB, PostgreSQL (pgvector), and the Cloudflare Tunnel engine.
