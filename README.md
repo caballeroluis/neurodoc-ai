@@ -123,14 +123,14 @@ Most software engineers and tech-industry professionals own high-end personal ga
                                                                  │
          ┌───────────────────────────┬───────────────────────────┴───────────────────────────┐
          ▼                           ▼                           ▼                           ▼
- 🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)          🌐 (Secure Tunnel)
+ 🔒 (Corporate VPN Tunnel)   🔒 (Corporate VPN Tunnel)   🔒 (Corporate VPN Tunnel)   🔒 (Corporate VPN Tunnel)
          │                           │                           │                           │
  [ Dev 1: Home Rig ]         [ Dev 2: Home Rig ]         [ Dev 3: Home Rig ]         [ Dev 4: Home Rig ]
  (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)
 ```
 
 #### Technical Mechanics under Two-Tier Load Balancing:
-1. **The Sovereign Home Node:** Employees register their home Homelab machines by spinning up a hermetic, lightweight NeuroDoc slave container that securely exposes their local CUDA runtime through automated, outbound **Cloudflare Tunnels** (avoiding open residential ports).
+1. **The Sovereign Private Node:** Employees register their personal home Homelab machines by joining the encrypted corporate VPN overlay. Each home node spins up a hermetic, lightweight NeuroDoc slave container that communicates strictly within the private network perimeter, exposing the local CUDA runtime exclusively to the corporate core without open residential ports or third-party public cloud routing.
 2. **Two-Tier Balanced Inference (Network + Hardware Cascade):**
    * **Level 1 (Network Load Balancing):** The Spring Boot core domain at the office treats these home nodes as abstract infrastructural adapters. When a commit push triggers an asset check, the central balancer routes the text delta to whichever employee's home machine has idle capacity.
    * **Level 2 (Local GPU Optimization via vLLM):** To prevent multiple simultaneous network requests from crashing a single developer's machine, each home container runs **vLLM** instead of standard single-user inference engines. By leveraging **PagedAttention**, the home node slices its VRAM (e.g., an RTX 3090's 24GB) into virtual memory pages, managing parallel user queries concurrently without triggering Out-Of-Memory (OOM) crashes.
@@ -139,7 +139,95 @@ Most software engineers and tech-industry professionals own high-end personal ga
 This framework shifts corporate infrastructure scaling: This offers a decentralized, zero-cloud-cost compute alternative, while engineering teams monetize their hardware assets during the day.
 
 ---
-* Have a radical optimization or want to propose **[IDEA-002]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+
+### [IDEA-002] The Asymmetric Failover Engine (Mitigating Procedural Lock-In)
+
+#### Origin of the Idea: Real-World Infrasignment
+This architecture paradigm was conceived following the geopolitical and operational volatility observed in June 2026, specifically the sudden US export-control directive that forced the immediate suspension of frontier models like Claude Fable 5 for foreign nationals. This event proved that relying 100% on external cloud APIs introduces an unacceptable systemic business continuity liability. When centralized endpoints change, degrade, or face perimeter lockdowns, corporate operations freeze instantly.
+
+* **Status:** Conceptual Draft / Architectural Design Phase
+* **Target Flaw:** Procedural lock-in, API saturation, and sudden capability interruptions in critical enterprise, legal, or financial pipelines.
+
+#### The Philosophy: Local Metal as the Single Source of Truth
+Most organizations treat local AI infrastructure as an afterthought or a secondary alternative. **NeuroDoc AI** flips the paradigm: an On-Premise sovereign layer (running hermetically via local hardware) operates as the permanent, unchanging baseline of the entire architecture. Public frontier cloud APIs are treated purely as a volatile, temporary acceleration layer. If the external API drops, shifts its data policy, or prices skyrocket due to global endpoint saturation, the core pipeline never stops.
+
+```text
+  [ Incoming Code/Commit Delta ]
+                │
+                ▼
+   (Hexagonal Routing Domain)
+                │
+     ┌──────────┴────────────────────────┐
+     │ (Cloud Stable & Compatible?)      │
+     ▼                                   ▼
+  [ YES ]                             [ NO ] ──► (Incompatible Update / Saturation Failover)
+     │                                                     │
+     ▼                                                     ▼
+[ External Cloud Frontier API ]                  [ Sovereign Local Core ]
+(High-Speed Acceleration)                        (Isolated Debian AMD • ChromaDB)
+     │                                                     │
+     ▼                                                     ▼
+[ Volatile Inference / High Risk ]               [ Deterministic Baseline Support ]
+                                                 (Maintains stable operations while 
+                                                  cloud adapters are rewritten/fixed)
+
+```
+
+#### Technical Mechanics under Volatility Constraints:
+1. **The Sovereign Invariant Base:** The central pipeline, vector validation rules, database structures (ChromaDB), and localized context models operate natively on local bare-metal. The business logic is 100% independent of foreign endpoints or cloud-layer software assumptions.
+2. **Decoupled Asymmetric Failover:** While the cloud connection is active and stable, heavy migrations or multi-modal token requests are optionally routed externally to leverage raw cloud speed. However, the system actively mirrors the prompt topologies and governance rules inside the local core instance.
+3. **Continuous Support Lifecycle:** The exact moment a remote kill-switch or export ban cuts access to the cloud model, the system executes an automated, zero-latency failover to the local bare-metal engine. Operations do not suffer a standstill. The local engine provides full operational continuity, serving as a protective buffer that keeps the engineering team 100% functional while the systems architects safely adapt or rewrite the external cloud adapters to the new market realities.
+
+This framework ensures that technical agility is never rented: True sovereignty means managing model volatility as a hard design constraint from day zero, anchoring company operations in physical space rather than digital pixels.
+
+---
+
+### [IDEA-003] Token Gatekeeper Middleware (Ingress Prompt Guard)
+
+#### Origin of the Idea: Real-World Infrasignment
+This architecture paradigm was conceived following a technical discussion with infrastructure engineer Agustín regarding active runtime operations and perimeter guardrails. Agustín outlined the baseline vulnerability of exposing open LLM orchestrations to unchecked user streams. 
+
+By analyzing his production deployment scenarios, **NeuroDoc AI** expanded the guardrail blueprint into a specialized local vector database layer (ChromaDB) that intercepts and validates document payloads at the ingress boundary, long before they consume external tokens or exhaust local VRAM parameters.
+
+* **Status:** Conceptual Draft / Architectural Design Phase
+* **Target Flaw:** Unregulated context footprint inflation, financial token-drain in public clouds, and hardware resource exhaustion during high-concurrency enterprise parsing operations.
+
+#### The Philosophy: Enforcing Text-Only Low-Overhead Inputs
+Generative AI orchestrations frequently fail or overspend because the system treats ingestion layers as open, unchecked endpoints. **NeuroDoc AI** proposes a lightweight middleware boundary layer that intercepts user requests at the API Gateway level before they ever hit the core inference cluster or cloud pipes. The system isolates data-extraction mechanics from generative pipelines, ensuring the model only receives lean, dense semantic tokens.
+
+```text
+  [ Raw User Request + 5MB PDF Blob ]
+                   │
+                   ▼
+     (Token Gatekeeper Ingress Gate)
+                   │
+         (Binary Detected?)
+          ├── [ YES ] ──► [ Sovereign Local Text Parser ]
+          │               (Rust/Python Raw Data Extraction)
+          │                              │
+          └── [ NO ]                     ▼
+               │              [ Stripped Plain-Text Payload ]
+               ▼
+     (Check Token Budget / Semaphore Enforcer)
+               │
+      ┌────────┴────────┐
+      ▼                 ▼
+ [ Within Budget ]  [ Over Quota ] ──► [ Ingress Blocked ]
+      │                                (Infrastructure Protection Error)
+      ▼
+ [ Core Inference / Cloud Pipe ]
+```
+
+#### Technical Mechanics under Resource Constraints:
+1. **Binary Interception & Validation:** The middleware captures incoming input payloads at the network boundary. If a binary stream or unstructured document block is detected, the direct call to the core inference runtime or external cloud API is explicitly blocked at the ingress gate.
+2. **Sovereign Local Text Parsing:** The blocked asset is instantly offloaded to a zero-overhead local parsing utility (utilizing lightweight, native Rust text-extraction binaries or fast Python micro-parsers). This process isolates the raw text contents, stripping away visual styles, structural metadata, layouts, and binary media bloat natively within the local boundary.
+3. **Token Budget Enforcement:** The resulting plain-text output is measured against a strict enterprise token-quota semaphore. If the calculated prompt context footprint remains within safe financial and local hardware parameters, the request is safely dispatched to the core pipeline; otherwise, it is rejected with an infrastructure protection error before consuming compute credits or saturating VRAM.
+
+This framework ensures that enterprise intelligence never runs unmetered: True governance requires filtering raw payload inputs at the network perimeter, protecting compute resources from data-bloat vulnerabilities.
+
+---
+
+* Have a optimization or want to propose **[IDEA-004]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
 ##  Roadmap Milestones & Horizon (In Development)
 
@@ -148,3 +236,37 @@ This framework shifts corporate infrastructure scaling: This offers a decentrali
 * [ ] **Phase 3: Standardized MCP Layer** – Implementing the Python Model Context Protocol hub to stream unified compliance rules to third-party IDE nodes.
 * [ ] **Phase 4: Architecture Metrics Dashboard** – Frontend UI to track core domain coupling and monitor linting compliance scores across repository branches.
 * [ ] **Phase 5: Multi-Tenant Data Isolation** – Implementing Row-Level Security (RLS) in PostgreSQL and metadata namespaces in ChromaDB to guarantee strict tenant partition.
+
+## Future Architectural Aspirations (Long-Term Demo Target)
+
+- [ ] **Target Demo 01: The Router Firewall Fallback & Hardware Boot**
+  * **The Setup:** Open the IDE and stream an active development prompt directed at a commercial cloud LLM endpoint.
+  * **The Chaos:** Live-drop a firewall block ruleset directly inside the residential router interface to trigger an instant `Connection Refused` error on the cloud API.
+  * **The Hexagonal Recovery:** The core domain intercepts the network timeout exception and fires an automated UDP Magic Packet—triggering either **Wake-on-LAN (WoL)** or **Wake-on-WAN (WoW)** depending on the node's network location. This boots the offline gaming host and seamlessly routes the context payload to the local CUDA/vLLM runtime.
+  * **The Target:** Zero changes required on the developer's prompt or IDE configuration—true infrastructure decoupling via interchangeable adapters.
+
+- [ ] **Target Demo 02: Crowdsourced VRAM Failover Grid**
+  * **The Setup:** Simulate an incoming traffic spike by triggering 10 simultaneous repository push events (multi-user git diff streams).
+  * **The Chaos:** Artificially saturate the memory constraints (OOM boundary) of a single employee's local development machine.
+  * **The Recovery:** The centralized Go orchestrator dynamically opens outbound Cloudflare Tunnels toward active node rigs (e.g., a distributed RTX 3090 setup), partitioning the query load concurrently through **vLLM PagedAttention** over residential broadband latency.
+
+- [ ] **Target Demo 03: Real-Time Governance Shift (The Junior Anti-Malpractice Gate)**
+  * **The Setup:** A junior developer uses commercial generative AI assistants to aggressively inject code, inadvertently introducing bad practices, coupling anomalies, or architectural drift.
+  * **The Action:** A senior architect drops a brand-new markdown style guide or infrastructure layout standard inside the local `/docs` folder. 
+  * **The Enforcement:** The vector database (**ChromaDB**) indexes the update instantly. On the very next git push event, the native Rust interceptor captures the delta stream, validates it against the fresh architectural axioms, and automatically rejects the commit. The junior is instantly blocked from deploying anti-patterns without requiring manual senior code review.
+
+- [ ] **Target Demo 04: The Environmental Memory Sync (For Software Developers)**
+  * **The Setup:** Open two separate isolated development environments on a legacy repository.
+  * **The Action:** The developer prompts the local assistant to refactor a backend gateway. Instead of generating generic framework code, the local MCP server injects historical context logs and past bug resolutions directly into the IDE context window.
+  * **The Target:** Eliminate token waste and hallucinated patches by forcing the AI agent to respect the long-term environmental memory of the codebase.
+
+- [ ] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
+  * **The Setup:** Connect a local point-of-sale (POS) mock database containing 3 years of workshop repair tickets and groupset inventory history.
+  * **The Chaos:** Simulate an overnight pricing volatility surge or supply chain bottleneck from major component manufacturers right before the seasonal repair peak.
+  * **The Recovery:** The Python analytical engine runs localized predictive forecasting over the tokenized data. It generates an optimized, prioritized JIT procurement schedule directly to the workshop's ledger, preventing active capital immobilization in low-turnover items.
+
+- [ ] **Target Demo 06: Zero-Knowledge Jurisprudence Audit (For Legal Consulting Firms)**
+  * **The Setup:** Ingest 10,000 pages of sensitive, highly confidential corporate contracts and jurisprudence data inside the local network perimeter.
+  * **The Action:** Run a deep compliance and audit query from an external legal workstation targeting the local model endpoint.
+  * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The entire embedding generation, vector matching inside ChromaDB, and LLM inference occur strictly within the physical boundaries of the local bare-metal server, proving zero telemetry packets leakage to public cloud infrastructure.
+
