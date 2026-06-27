@@ -1,4 +1,4 @@
-# ▪️ NeuroDoc AI • Next-Gen Hybrid Infrastructure & AI Governance
+# NeuroDoc AI • Next-Gen Hybrid Infrastructure & AI Governance
 > **The Project-Based Engineering Roadmap: Architecture, Homelab GitOps & Automated Pipeline Audit**
 
 ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
@@ -16,11 +16,11 @@
 ![Ollama](https://img.shields.io/badge/ollama-%23000000.svg?style=for-the-badge&logo=ollama&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-NeuroDoc AI is an enterprise-grade reference ecosystem for hybrid engineering designed to resolve business inefficiencies and automate code governance using local On-Premise Artificial Intelligence. The project prioritizes absolute data sovereignty, strict multi-tenant isolation, and radical cloud cost optimization through a decoupled architecture running on self-hosted hardware.
+NeuroDoc AI is an enterprise-grade reference ecosystem for hybrid engineering designed to resolve business inefficiencies and automate code governance using local On-Premise Artificial Intelligence. The project prioritizes absolute data sovereignty, strict multi-tenant isolation, and strict cloud cost optimization through a decoupled architecture running on self-hosted hardware.
 
 ---
 
-## 🗺️ Master Roadmap & Target Architecture
+## Master Roadmap & Target Architecture
 
 This repository centralizes the evolutionary roadmap of the ecosystem. The architecture strictly follows the **interchangeable parts principle**: the backend core and data layers are decoupled via pure interfaces, allowing seamless migration between AI models or persistence providers without modifying the domain core.
 
@@ -46,7 +46,7 @@ neurodoc-ai/
 
 ---
 
-## ⚙️ Homelab Infrastructure & Zero-Trust Stack
+## Homelab Infrastructure & Zero-Trust Stack
 
 The bare-metal environment is engineered under enterprise standards to completely mitigate the financial drain of third-party cloud credits:
 
@@ -58,12 +58,12 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
 ---
 
-## 🏢 Targeted Core Use Cases & Solved Market Flaws
+## Targeted Core Use Cases & Solved Market Flaws
 
 The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly specialized modules addressing three real-world sectors:
 
 ### 1. For Software Developers (Active Code Governance & Environmental Memory)
-* **The Problem:** Exponential technical debt degradation across enterprise repositories due to unregulated code injection from generative AI tools. Short-lived commercial AI assistants function within static silos, treating every prompt as a blank slate. Lacking a persistent memory of the project environment, they introduce volatile, hazardous "Auto-Fix" code patches under tight delivery deadlines.
+* **The Problem:** Exponential technical debt degradation across enterprise repositories due to unregulated code injection from generative AI tools. Short-lived commercial AI assistants function within static silos, treating every prompt as a blank slate. Lacking a persistent memory of the project environment, they introduce volatile 'Auto-Fix' code patches under tight delivery deadlines.
 * **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust `ai-governance` binary captures `git diff` deltas on every commit push. Instead of evaluating changes in isolation, the system anchors the delta stream against the project's global architectural context and long-term environmental guidelines indexed inside ChromaDB. It automatically blocks merges if compliance violations are detected, ensuring context always wins over raw execution speed.
 
 ### 2. For Bike Shops / Specialized Retailers (Inventory & Cash Flow Optimization)
@@ -72,11 +72,11 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ### 3. For Major Legal Consulting Firms (Data Sovereignty & Sealed RAG)
 * **The Problem:** Inability to leverage large language models for internal contract audits due to severe compliance risks regarding public cloud data leaks, professional secrecy, and strict GDPR requirements.
-* **The NeuroDoc Solution:** A hermetically sealed enterprise RAG platform. It implements metadata-driven multi-tenant isolation. Document ingestion of jurisprudence and LLM inference occur entirely within the boundaries of the physical On-Premise server, ensuring absolute client privacy.
+* **The NeuroDoc Solution:** A secure enterprise On-Premise RAG platform. It implements metadata-driven multi-tenant isolation. Document ingestion of jurisprudence and LLM inference occur entirely within the boundaries of the physical On-Premise server, ensuring absolute client privacy.
 
 ---
 
-## 🔔 Stay Tuned & Follow Development
+## Stay Tuned & Follow Development
 
 The ecosystem is built openly in a **Building in Public** fashion. To monitor real-time architectural changes, system updates, and roadmap iterations:
 * Click the **Watch** button at the top right of this repository.
@@ -84,7 +84,7 @@ The ecosystem is built openly in a **Building in Public** fashion. To monitor re
 
 ---
 
-## 🏢 Enterprise Production Deployment & Integration
+## Enterprise Production Deployment & Integration
 
 The ecosystem is architected under the **interchangeable parts principle**, meaning the core domain logic remains strictly decoupled from edge infrastructure providers. To transition this baseline Homelab blueprint into a corporate enterprise environment, only the outer infrastructural adapters require modification without inducing pipeline latency:
 
@@ -95,19 +95,19 @@ The ecosystem is architected under the **interchangeable parts principle**, mean
 
 ---
 
-## ⚖️ Disclaimer & Legal Liability
+## Disclaimer & Legal Liability
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---
 
-## 🧠 Architectural Incubator: Decentralized Design Framework
+## Architectural Incubator: Decentralized Design Framework
 
 This section operates as an open technical sandbox for experimental blueprints. Community members and system architects are welcome to submit critiques, alternative topologies, or brand-new paradigm designs by opening an Issue labeled with the next chronological index.
 
-### 📊 [IDEA-001] The Gamers Compute Grid (Crowdsourced VRAM Mining)
+### [IDEA-001] The Gamers Compute Grid (Crowdsourced VRAM Mining)
 
-#### 🗺️ Origin of the Idea: Real-World Infrasignment
+#### Origin of the Idea: Real-World Infrasignment
 This architecture paradigm was conceived following a technical alignment discussion with software engineer Franco Ariel Marcuzzi regarding his `franco-proxy-llm` project. Franco encountered a recurrent corporate bottleneck: the company's servers lacked AI compute capacity, forcing him to securely expose his personal home hardware via an API-key proxy to salvage a backend production demo. 
 
 By analyzing his infrastructure topology, **NeuroDoc AI** expanded the framework from a single-machine emergency proxy into a standardized, multi-node decentralized cluster model that companies can leverage natively.
@@ -115,7 +115,7 @@ By analyzing his infrastructure topology, **NeuroDoc AI** expanded the framework
 * **Status:** Conceptual Draft / Architectural Design Phase
 * **Target Flaw:** Critical high-concurrency VRAM bottlenecks during enterprise operational peaks without scaling corporate data center CapEx.
 
-#### 🎮 The Philosophy: Monetizing Idle Gaming Hardware
+#### The Philosophy: Monetizing Idle Gaming Hardware
 Most software engineers and tech-industry professionals own high-end personal gaming setups at home equipped with massive consumer GPUs (e.g., NVIDIA RTX 3090, 4080, 4090) that sit completely idle during standard working hours. Instead of forcing the enterprise to purchase expensive cloud clusters or private server farms, **NeuroDoc AI** proposes an abstract, interchangeable compute grid utilizing distributed consumer hardware.
 
 ```text
@@ -129,23 +129,22 @@ Most software engineers and tech-industry professionals own high-end personal ga
  (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)     (vLLM • PagedAttention)
 ```
 
-#### ⚙️ Technical Mechanics under Two-Tier Load Balancing:
+#### Technical Mechanics under Two-Tier Load Balancing:
 1. **The Sovereign Home Node:** Employees register their home Homelab machines by spinning up a hermetic, lightweight NeuroDoc slave container that securely exposes their local CUDA runtime through automated, outbound **Cloudflare Tunnels** (avoiding open residential ports).
-2. **Two-Tier Balanced Inferencia (Network + Hardware Cascade):**
+2. **Two-Tier Balanced Inference (Network + Hardware Cascade):**
    * **Level 1 (Network Load Balancing):** The Spring Boot core domain at the office treats these home nodes as abstract infrastructural adapters. When a commit push triggers an asset check, the central balancer routes the text delta to whichever employee's home machine has idle capacity.
    * **Level 2 (Local GPU Optimization via vLLM):** To prevent multiple simultaneous network requests from crashing a single developer's machine, each home container runs **vLLM** instead of standard single-user inference engines. By leveraging **PagedAttention**, the home node slices its VRAM (e.g., an RTX 3090's 24GB) into virtual memory pages, managing parallel user queries concurrently without triggering Out-Of-Memory (OOM) crashes.
 3. **The "Proof-of-Inference" Payroll Incentive:** The platform monitors the exact number of tokens processed by each node. Instead of mining traditional volatile cryptocurrencies, workers "mine" internal corporate credits, translating into direct financial bonuses on their monthly payroll to subsidize hardware depreciation and domestic electricity costs.
 
-This framework shifts corporate infrastructure scaling: the company gains a highly elastic, sovereign, and radical zero-cloud-cost compute topography, while engineering teams monetize their hardware assets during the day.
+This framework shifts corporate infrastructure scaling: This offers a decentralized, zero-cloud-cost compute alternative, while engineering teams monetize their hardware assets during the day.
 
 ---
-*💡 Have a radical optimization or want to propose **[IDEA-002]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+* Have a radical optimization or want to propose **[IDEA-002]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
-
-## 📈 Roadmap Milestones & Horizon (In Development)
+##  Roadmap Milestones & Horizon (In Development)
 
 * [ ] **Phase 1: Core Infra Setup** – Unified Docker orchestration of **Gitea Platform**, ChromaDB, PostgreSQL (pgvector), and the Cloudflare Tunnel engine.
 * [ ] **Phase 2: Git Interceptor Core** – Finalizing the native `ai-governance` Rust component for efficient `git diff` analysis.
 * [ ] **Phase 3: Standardized MCP Layer** – Implementing the Python Model Context Protocol hub to stream unified compliance rules to third-party IDE nodes.
-* [ ] **Phase 4: Visual Agility Semaphore** – Frontend dashboard monitoring what percentage of the domain layer remains uncontaminated by external dependencies.
-* [ ] **Phase 5: Multi-tenant Metadata Isolation** – Strict database row-level locking and vector namespace isolation to guarantee total regulatory compliance.
+* [ ] **Phase 4: Architecture Metrics Dashboard** – Frontend UI to track core domain coupling and monitor linting compliance scores across repository branches.
+* [ ] **Phase 5: Multi-Tenant Data Isolation** – Implementing Row-Level Security (RLS) in PostgreSQL and metadata namespaces in ChromaDB to guarantee strict tenant partition.
