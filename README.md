@@ -1,5 +1,5 @@
 # NeuroDoc AI • Next-Gen Hybrid Infrastructure & AI Governance
-> **The Project-Based Engineering Roadmap: Architecture, Homelab GitOps & Automated Pipeline Audit**
+> **Enterprise Homelab Architecture for Autonomous Sovereign Code Governance**
 
 ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
 ![Gitea](https://img.shields.io/badge/Gitea-34495E?style=for-the-badge&logo=gitea&logoColor=5D9425)
@@ -17,6 +17,8 @@
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
 NeuroDoc AI is an enterprise-grade reference ecosystem for hybrid engineering designed to resolve business inefficiencies and automate code governance using local On-Premise Artificial Intelligence. The project prioritizes absolute data sovereignty, strict multi-tenant isolation, and strict cloud cost optimization through a decoupled architecture running on self-hosted hardware.
+
+> 💡 **Architectural Background & Vision:** The term **"Doc"** in NeuroDoc AI represents the bridging mechanism between static enterprise engineering guidelines (stored in `/docs`) and automated Dockerized infrastructure enforcement.
 
 ---
 
