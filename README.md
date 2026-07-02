@@ -22,16 +22,12 @@ NeuroDoc AI is an enterprise-grade reference ecosystem for hybrid engineering de
 
 ## Master Roadmap & Target Architecture
 
-This repository centralizes the evolutionary roadmap of the ecosystem. The architecture strictly follows the **interchangeable parts principle**: the backend core and data layers are decoupled via pure interfaces, allowing seamless migration between AI models or persistence providers without modifying the domain core.
+The backend ecosystem strictly rejects monolithic package structures that grow indefinitely. Instead, it implements a strict **Vertical Slicing** pattern combined with **Screaming Architecture** principles. The code is sliced by business domains rather than technical layers, turning the application into highly cohesive, promotion-ready microservices modules.
 
 ```text
 neurodoc-ai/
 ├── .github/workflows/         <-- CI/CD: Public showcase pipeline (Automated testing gates)
 ├── .gitea/workflows/          <-- CI/CD: On-Premise GitOps engine (Hermetic local execution)
-├── backend-core/              <-- The Single Source of Truth: Core Domain (Spring Boot 3)
-│   ├── src/main/java/.../
-│   │   ├── domain/            <-- Pure Framework-less Business Rules (Compliance axioms)
-│   │   └── infrastructure/    <-- Ports & Adapters (Plugs for PostgreSQL, RAG, and interfaces)
 ├── ai-governance/             <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
 │   └── src/main.rs            <-- Blistering fast 'git diff' stream capture & data encoding
 ├── mcp-server-python/         <-- Sovereign Model Context Protocol (MCP) Hub & RAG Engine
@@ -40,8 +36,24 @@ neurodoc-ai/
 ├── docs/                      <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
 │   ├── 01-isolation-rules.md  <-- Core domain isolation metrics
 │   └── 02-hexagonal-layers.md <-- Interface plugs and hardware technical specifications
-└── infra/                     <-- Homelab Orchestration Hub
-    └── docker-compose.yml     <-- Local network topology & cross-runtime persistence layers
+├── infra/                     <-- Homelab Orchestration Hub
+│   └── docker-compose.yml     <-- Local network topology & cross-runtime persistence layers
+│
+└── backend-core/              <-- The Single Source of Truth: Core Domain (Spring Boot 3)
+        ├── governance/        <-- Slice 01: Active Code Governance
+        │   ├── domain/        <-- Pure Framework-less Business Rules (Compliance axioms)
+        │   │   ├── model/     <-- Domain entities and value objects
+        │   │   └── port/      <-- Inbound/Outbound interface definitions
+        │   │       └── CodeValidatorPort.java <-- Active interface rule definition
+        ├── analytics/         <-- Slice 02: Predictive Forecasting (Bike Retail POS pipelines)
+        │   ├── domain/        <-- Demand forecasts and inventory JIT cash-flow math
+        │   ├── application/   <-- Use Cases (Calculate seasonal restocking schedules)
+        │   └── infrastructure/<-- Ports & Adapters (POS mock DB adapters, ledger connectors)
+        ├── legal/             <-- Slice 03: Sealed RAG Platform (Jurisprudence audit)
+        │   ├── domain/        <-- Strict metadata-driven multi-tenant isolation rules
+        │   ├── application/   <-- Use Cases (Contract compliance scanning, file ingestion)
+        │   └── infrastructure/<-- Ports & Adapters (On-Premise PDF extractors, local isolation)
+        └── shared/            <-- Cross-cutting structural utilities (Kernel-level common code)
 ```
 
 ---
@@ -76,6 +88,29 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ---
 
+## The Three-Tier Evaluation Loop
+
+NeuroDoc AI rejects blind LLM orchestration. To minimize latency, save VRAM, and avoid token-drain, the governance loop splits code validation into three isolated steps, separating deterministic calculations from semantic reasoning. 
+
+In practice, this loop shifts architecture guidelines from dead documentation into executable guardrails: the system matches live git diffs against the senior engineering team's explicit rules stored in `/docs`, automating the pull request compliance audit before any code hits the remote repository.
+
+> [!TIP]
+> **Maximize Pipeline Precision:** Feed the `/docs` incubator with highly modular, isolated markdown files (e.g., explicit layer boundary definitions, concrete security annotation requirements, or naming conventions). The more atomic and clear the senior team's written constraints are, the more precise the mathematical vector retrieval becomes in Phase 2, resulting in zero LLM hallucinations during final inference.
+
+### 1. Phase 1: Stream Capture (Zero-AI Overhead)
+The compiled native Rust `ai-governance` binary intercepts the `git diff` stream at the git hook perimeter. It strips binary noise, extracts structural metadata (modified classes, packages, file targets), and serializes the clean delta payload. This is pure systems-level text processing with zero AI resource utilization.
+
+### 2. Phase 2: Context Retrieval (Zero-LLM Compute)
+The backend core takes the structural footprint from Rust and generates a dense vector embedding of the code delta. It triggers a mathematical cosine-similarity query against ChromaDB / PostgreSQL (pgvector) to fetch the exact architectural guidelines from the `/docs` folder that match the modified code. This relies entirely on database-optimized linear algebra, bypassing the LLM completely.
+
+### 3. Phase 3: Local Semantic Inference (Targeted VRAM)
+Only when specific rules are retrieved from the vector store, a localized LLM instance (Ollama/vLLM) is called inside the Homelab perimeter. The model receives a highly restricted prompt containing only the git diff delta and the isolated guidelines. It evaluates compliance and returns a binary ACCEPT/REJECT with an engineering justification. Because the context window is pre-filtered mathematically, execution drops to milliseconds on local hardware.
+
+> [!NOTE]
+> **Model Efficiency & Scaling Axiom:** Modern specialized code models (such as 7B or 14B localized Coder weights) demonstrate near-parity with massive cloud frontier models when tasked with static analysis and syntactic compliance. You do not need the financial drain of a GPT-4o instance to detect an unsecured API endpoint or a broken layer boundary; a localized coder model captures these violations flawlessly if provided with the precise context window. *[Architectural Status: Comprehensive field-testing for multi-language syntax thresholds is currently pending on the active roadmap].*
+
+---
+
 ## Stay Tuned & Follow Development
 
 The ecosystem is built openly in a **Building in Public** fashion. To monitor real-time architectural changes, system updates, and roadmap iterations:
@@ -91,7 +126,6 @@ The ecosystem is architected under the **interchangeable parts principle**, mean
 1. **Edge Routing & Ingress:** The default `cloudflare_tunnel` container can be removed from `docker-compose.yml`. In a corporate network, incoming data packets are securely routed by pointing the application runtimes behind the company's internal API Gateways, Reverse Proxies (NGINX, HAProxy), or specialized VPN/Direct Connect paths.
 2. **GitOps Pipeline Orchestration:** The pre-flight quality gate files are explicitly decoupled. Teams can seamlessly migrate from the local network **Gitea Actions** workflow (`.gitea/workflows/`) to cloud-managed corporate environments like **GitHub Actions**, GitLab CI, or Bitbucket Pipelines by registering enterprise Self-Hosted Runners operating on top of bare-metal machines.
 3. **High-Performance Local Persistence Scaling:** To guarantee ultra-low latency inside the active code execution loop, vector context compliance (**ChromaDB / pgvector**) remains strictly localized within the client's internal network mesh (LAN/On-Premise cluster). External enterprise datastores are integrated solely as asynchronous, non-blocking outbound adapters for long-term analytical metric storage, ensuring zero pipeline serialization delays during commit evaluation.
-
 
 ---
 
@@ -269,4 +303,11 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
   * **The Setup:** Ingest 10,000 pages of sensitive, highly confidential corporate contracts and jurisprudence data inside the local network perimeter.
   * **The Action:** Run a deep compliance and audit query from an external legal workstation targeting the local model endpoint.
   * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The entire embedding generation, vector matching inside ChromaDB, and LLM inference occur strictly within the physical boundaries of the local bare-metal server, proving zero telemetry packets leakage to public cloud infrastructure.
+     
+- [ ] **Target Demo 07: The Microservices Extraction & Commercial Packaging Gate (For B2B Enterprise Ventures)**
+    - **The Setup:** A client (e.g., a Major Legal Consulting Firm) requests to license exclusively the On-Premise Sealed RAG framework, explicitly demanding the total removal of unrelated operational modules (such as Developer Governance or Bike Retail Predictive Analytics).
+    - **The Action:** The engineer triggers a localized build extraction. Without refactoring, modifying, or rewriting a single line of core business logic, the outer technical layer unplugs the `governance` and `analytics` vertical slices from the repository tree.
+    - **The Recovery via Hexagonal Design:** Because the system enforces strict **Vertical Slicing** and domain-level boundary isolation inside Spring Boot 3, the independent `legal` module coupled with the `shared` structural kernel remains completely functional. The package compiles immediately as a standalone, lightweight, single-tenant or multi-tenant deployment artifact ready for client delivery.
+    - **The Target:** Prove zero cross-domain coupling and absolute architectural portability, converting a decentralized monorepo into modular, highly-monetizable enterprise assets in minutes.
+
 

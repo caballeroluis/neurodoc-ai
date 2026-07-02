@@ -1,4 +1,4 @@
-package com.neurodoc.core.domain.model;
+package com.neurodoc.core.domain.port;
 
 /**
  * Pure inbound port enforcing deterministic Hexagonal Architecture isolation.
