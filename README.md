@@ -78,7 +78,7 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ### 1. For Software Developers (Active Code Governance & Environmental Memory)
 * **The Problem:** Exponential technical debt degradation across enterprise repositories due to unregulated code injection from generative AI tools. Short-lived commercial AI assistants function within static silos, treating every prompt as a blank slate. Lacking a persistent memory of the project environment, they introduce volatile 'Auto-Fix' code patches under tight delivery deadlines.
-* **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust `ai-governance` binary captures `git diff` deltas on every commit push. Instead of evaluating changes in isolation, the system anchors the delta stream against the project's global architectural context and long-term environmental guidelines indexed inside ChromaDB. It automatically blocks merges if compliance violations are detected, ensuring context always wins over raw execution speed.
+* **The NeuroDoc Solution:** Automated pre-flight interception where the compiled Rust ai-governance binary captures git diff deltas on every commit push. By bypassing the bloat of heavy middleware and skipping cloud-dependent protocol abstraction layers (like external MCP setups), the system achieves zero operational lag on constrained local hardware. Instead of evaluating changes in isolation, the native Rust interceptor processes AST structures deterministically before any LLM execution, anchoring the delta stream against the project's global architectural context indexed inside ChromaDB. It automatically blocks merges in milliseconds if compliance violations are detected, ensuring context always wins over raw execution speed while preventing junk code from wasting local inference tokens.
 
 ### 2. For Bike Shops / Specialized Retailers (Inventory & Cash Flow Optimization)
 * **The Problem:** Recurrent cash flow crunches triggered by passive procurement management. This leads to costly out-of-stock scenarios during high-demand peaks alongside stagnant capital tied up in low-turnover items.
@@ -92,15 +92,17 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ## The Three-Tier Evaluation Loop
 
-NeuroDoc AI rejects blind LLM orchestration. To minimize latency, save VRAM, and avoid token-drain, the governance loop splits code validation into three isolated steps, separating deterministic calculations from semantic reasoning. 
+NeuroDoc AI rejects blind LLM orchestration. To minimize latency, save VRAM, and avoid token-drain, the governance loop splits code validation into three isolated steps, separating deterministic calculations from semantic reasoning.
 
 In practice, this loop shifts architecture guidelines from dead documentation into executable guardrails: the system matches live git diffs against the senior engineering team's explicit rules stored in `/docs`, automating the pull request compliance audit before any code hits the remote repository.
 
 > [!TIP]
 > **Maximize Pipeline Precision:** Feed the `/docs` incubator with highly modular, isolated markdown files (e.g., explicit layer boundary definitions, concrete security annotation requirements, or naming conventions). The more atomic and clear the senior team's written constraints are, the more precise the mathematical vector retrieval becomes in Phase 2, resulting in zero LLM hallucinations during final inference.
 
-### 1. Phase 1: Stream Capture (Zero-AI Overhead)
-The compiled native Rust `ai-governance` binary intercepts the `git diff` stream at the git hook perimeter. It strips binary noise, extracts structural metadata (modified classes, packages, file targets), and serializes the clean delta payload. This is pure systems-level text processing with zero AI resource utilization.
+### 1. Phase 1: Stream Capture & Native Enforcement (Zero-AI Overhead)
+The compiled native Rust ai-governance binary intercepts the git diff stream at the git hook perimeter. While commercial AI assistants rely on heavy abstract layers and cloud Webhooks that bloat pipelines and skyrocket operational lag, NeuroDoc AI enforces an ultra-lean, native Rust interceptor directly inside the pre-flight cycle.
+
+It captures live `git diff` deltas, strips binary noise, and processes AST (Abstract Syntax Tree) structures deterministically before any LLM execution. By bypassing heavy middleware and skipping non-essential, cloud-dependent protocol abstraction layers, the system achieves pure local isolation with zero latency. If a commit violates the sovereign architectural rules, the Rust gate drops the payload in milliseconds, saving massive inference costs by preventing junk code from ever hitting the local LLM core.
 
 ### 2. Phase 2: Context Retrieval (Zero-LLM Compute)
 The backend core takes the structural footprint from Rust and generates a dense vector embedding of the code delta. It triggers a mathematical cosine-similarity query against ChromaDB / PostgreSQL (pgvector) to fetch the exact architectural guidelines from the `/docs` folder that match the modified code. This relies entirely on database-optimized linear algebra, bypassing the LLM completely.
