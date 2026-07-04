@@ -10,7 +10,7 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-%23000000.svg?style=for-the-badge&logo=rust&logo=rust&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571.svg?style=for-the-badge&logo=fastapi)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Ollama](https://img.shields.io/badge/ollama-%23000000.svg?style=for-the-badge&logo=ollama&logoColor=white)
@@ -32,8 +32,7 @@ neurodoc-ai/
 ├── .gitea/workflows/          <-- CI/CD: On-Premise GitOps engine (Hermetic local execution)
 ├── ai-governance/             <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
 │   └── src/main.rs            <-- Blistering fast 'git diff' stream capture & data encoding
-├── mcp-server-python/         <-- Sovereign Model Context Protocol (MCP) Hub & RAG Engine
-│   └── src/main.py            <-- Local FastAPI server exposing standardized tools to external IDEs
+├── cbm-knowledge-graph/       <-- Statically linked C codebase-memory MCP server
 ├── frontend-control/          <-- Presentation Layer: Visual Dashboard (Agility Semaphores)
 ├── docs/                      <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
 │   ├── 01-isolation-rules.md  <-- Core domain isolation metrics
@@ -67,9 +66,11 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Bare-Metal OS & Orchestration:** Central host managed via Docker Compose. Hybrid persistence is achieved using ChromaDB (semantic RAG orchestration) coupled with PostgreSQL + pgvector (correlated relational data).
 * **Private GitOps Hub (Gitea Engine):** Self-hosted Gitea service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs Gitea Actions pipelines natively, operating with full sovereignty inside the local area network.
 * **Zero-Trust Network Governance:** Edge routing secured by a Cloudflare Tunnel (cloudflared). This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
-* **Standardized Context Sharing (Local MCP Hub):** Rather than isolating semantic knowledge within closed scripts, the Python subsystem exposes a native **Model Context Protocol (MCP)** server. This acts as a standardized data bridge, allowing external IDE extensions (e.g., Cursor, Cline, or localized development utilities) to query ChromaDB style guides and stream architecture axioms simultaneously, completely neutralizing cross-tool context blindness.
+* **Sovereign AI Ecosystem:** I am engineering [neurodoc-ai](https://github.com/caballeroluis/neurodoc-ai) — An enterprise-grade, 100% on-premise Homelab architecture designed to intercept code quality governance directly inside pre-flight CI/CD pipelines. Built via an ultra-low-overhead polyglot stack utilizing Java/Spring Boot 3 for the core business domain, native Rust for the pipeline interceptor, and a statically linked C engine (`codebase-memory-mcp`) to manage graph context, slashing cloud token consumption by 99%.
 * **Hybrid Integration Pipeline:** A Gitea/GitHub Self-Hosted Runner agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
 * **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
+* **Local-First PaaS Orchestration (Coolify & Podman Core):** To completely avoid manual runtime maintenance and eliminate third-party deployment dependencies, the entire ecosystem is orchestrated via a self-hosted `coolify` instance running natively on the Debian host. Runtimes are managed through a secure, rootless `podman` container engine, providing localized multi-tenant delivery, automated volume mapping, and internal isolated routing with absolute data privacy and zero cloud telemetry leakage.
+
 ---
 
 ## Targeted Core Use Cases & Solved Market Flaws
@@ -241,7 +242,7 @@ Generative AI orchestrations frequently fail or overspend because the system tre
                    │
          (Binary Detected?)
           ├── [ YES ] ──► [ Sovereign Local Text Parser ]
-          │               (Rust/Python Raw Data Extraction)
+          │               (Native Rust/C Raw Data Extraction)
           │                              │
           └── [ NO ]                     ▼
                │              [ Stripped Plain-Text Payload ]
@@ -258,7 +259,7 @@ Generative AI orchestrations frequently fail or overspend because the system tre
 
 #### Technical Mechanics under Resource Constraints:
 1. **Binary Interception & Validation:** The middleware captures incoming input payloads at the network boundary. If a binary stream or unstructured document block is detected, the direct call to the core inference runtime or external cloud API is explicitly blocked at the ingress gate.
-2. **Sovereign Local Text Parsing:** The blocked asset is instantly offloaded to a zero-overhead local parsing utility (utilizing lightweight, native Rust text-extraction binaries or fast Python micro-parsers). This process isolates the raw text contents, stripping away visual styles, structural metadata, layouts, and binary media bloat natively within the local boundary.
+2. **Sovereign Local Text Parsing:** The blocked asset is instantly offloaded to a zero-overhead local parsing utility (utilizing lightweight, native Rust or C text-extraction binaries). This process isolates the raw text contents, stripping away visual styles, structural metadata, layouts, and binary media bloat natively within the local boundary.
 3. **Token Budget Enforcement:** The resulting plain-text output is measured against a strict enterprise token-quota semaphore. If the calculated prompt context footprint remains within safe financial and local hardware parameters, the request is safely dispatched to the core pipeline; otherwise, it is rejected with an infrastructure protection error before consuming compute credits or saturating VRAM.
 
 This framework ensures that enterprise intelligence never runs unmetered: True governance requires filtering raw payload inputs at the network perimeter, protecting compute resources from data-bloat vulnerabilities.
@@ -271,7 +272,7 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
 
 * [ ] **Phase 1: Core Infra Setup** – Unified Docker orchestration of **Gitea Platform**, ChromaDB, PostgreSQL (pgvector), and the Cloudflare Tunnel engine.
 * [ ] **Phase 2: Git Interceptor Core** – Finalizing the native `ai-governance` Rust component for efficient `git diff` analysis.
-* [ ] **Phase 3: Standardized MCP Layer** – Implementing the Python Model Context Protocol hub to stream unified compliance rules to third-party IDE nodes.
+* [ ] **Phase 3: Standardized C-MCP Layer** – Deploying the statically linked C Model Context Protocol engine to stream unified compliance rules to third-party IDE nodes.
 * [ ] **Phase 4: Architecture Metrics Dashboard** – Frontend UI to track core domain coupling and monitor linting compliance scores across repository branches.
 * [ ] **Phase 5: Multi-Tenant Data Isolation** – Implementing Row-Level Security (RLS) in PostgreSQL and metadata namespaces in ChromaDB to guarantee strict tenant partition.
 
@@ -293,25 +294,25 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
   * **The Action:** A senior architect drops a brand-new markdown style guide or infrastructure layout standard inside the local `/docs` folder. 
   * **The Enforcement:** The vector database (**ChromaDB**) indexes the update instantly. On the very next git push event, the native Rust interceptor captures the delta stream, validates it against the fresh architectural axioms, and automatically rejects the commit. The junior is instantly blocked from deploying anti-patterns without requiring manual senior code review.
 
-- [ ] **Target Demo 04: The Environmental Memory Sync (For Software Developers)**
-  * **The Setup:** Open two separate isolated development environments on a legacy repository.
-  * **The Action:** The developer prompts the local assistant to refactor a backend gateway. Instead of generating generic framework code, the local MCP server injects historical context logs and past bug resolutions directly into the IDE context window.
-  * **The Target:** Eliminate token waste and hallucinated patches by forcing the AI agent to respect the long-term environmental memory of the codebase.
+- [ ] **Target Demo 04: The Environmental Memory Graph Sync (For Software Developers)**
+  * **The Setup:** Open separate isolated development environments on a complex repository mesh.
+  * **The Action:** The developer prompts the local agent to refactor a legacy hexagonal port. Instead of generating generic code, the native C-MCP server queries the local persistent knowledge graph via Cypher to instantly feed the IDE context window with precise cross-service HTTP routes and call-graph dependencies.
+  * **The Target:** Eliminate context blindness and achieve a 99% reduction in token consumption by avoiding raw file-by-file text scraping and replacing traditional read loops with structural graph diffusion before core model inference.
 
-- [ ] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
+- [-] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
   * **The Setup:** Connect a local point-of-sale (POS) mock database containing 3 years of workshop repair tickets and groupset inventory history.
   * **The Chaos:** Simulate an overnight pricing volatility surge or supply chain bottleneck from major component manufacturers right before the seasonal repair peak.
-  * **The Recovery:** The Python analytical engine runs localized predictive forecasting over the tokenized data. It generates an optimized, prioritized JIT procurement schedule directly to the workshop's ledger, preventing active capital immobilization in low-turnover items.
+  * **The Recovery:** The GPU-accelerated analytical engine running native JNI/cuDF bindings executes localized predictive forecasting over the tokenized data. It generates an optimized, prioritized JIT procurement schedule directly to the workshop's ledger, preventing active capital immobilization in low-turnover items.
 
 - [ ] **Target Demo 06: Zero-Knowledge Jurisprudence Audit (For Legal Consulting Firms)**
   * **The Setup:** Ingest 10,000 pages of sensitive, highly confidential corporate contracts and jurisprudence data inside the local network perimeter.
   * **The Action:** Run a deep compliance and audit query from an external legal workstation targeting the local model endpoint.
   * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The entire embedding generation, vector matching inside ChromaDB, and LLM inference occur strictly within the physical boundaries of the local bare-metal server, proving zero telemetry packets leakage to public cloud infrastructure.
-     
+  
 - [ ] **Target Demo 07: The Microservices Extraction & Commercial Packaging Gate (For B2B Enterprise Ventures)**
-    - **The Setup:** A client (e.g., a Major Legal Consulting Firm) requests to license exclusively the On-Premise Sealed RAG framework, explicitly demanding the total removal of unrelated operational modules (such as Developer Governance or Bike Retail Predictive Analytics).
-    - **The Action:** The engineer triggers a localized build extraction. Without refactoring, modifying, or rewriting a single line of core business logic, the outer technical layer unplugs the `governance` and `analytics` vertical slices from the repository tree.
-    - **The Recovery via Hexagonal Design:** Because the system enforces strict **Vertical Slicing** and domain-level boundary isolation inside Spring Boot 3, the independent `legal` module coupled with the `shared` structural kernel remains completely functional. The package compiles immediately as a standalone, lightweight, single-tenant or multi-tenant deployment artifact ready for client delivery.
-    - **The Target:** Prove zero cross-domain coupling and absolute architectural portability, converting a decentralized monorepo into modular, highly-monetizable enterprise assets in minutes.
+  * **The Setup:** A client (e.g., a Major Legal Consulting Firm) requests to license exclusively the On-Premise Sealed RAG framework, explicitly demanding the total removal of unrelated operational modules (such as Developer Governance or Bike Retail Predictive Analytics).
+  * **The Action:** The engineer triggers a localized build extraction. Without refactoring, modifying, or rewriting a single line of core business logic, the outer technical layer unplugs the `governance` and `analytics` vertical slices from the repository tree.
+  * **The Recovery via Hexagonal Design:** Because the system enforces strict **Vertical Slicing** and domain-level boundary isolation inside Spring Boot 3, the independent `legal` module coupled with the `shared` structural kernel remains completely functional. The package compiles immediately as a standalone, lightweight, single-tenant or multi-tenant deployment artifact ready for client delivery.
+  * **The Target:** Prove zero cross-domain coupling and absolute architectural portability, converting a decentralized monorepo into modular, highly-monetizable enterprise assets in minutes.
 
 

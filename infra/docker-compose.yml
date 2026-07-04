@@ -73,10 +73,10 @@ services:
       - neurodoc_network
     restart: always
 
-  # ☕ THE IMMUTABLE BUSINESS CORE (Spring Boot 3)
+  # ☕ THE IMMUTABLE BUSINESS CORE (Spring Boot 3 - Active Governance)
   backend_core_java:
-    image: neurodoc/backend-core:latest
-    container_name: neurodoc_java_domain
+    image: neurodoc/backend-governance:latest
+    container_name: neurodoc_java_governance
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - DB_HOST=postgres_engine
@@ -88,10 +88,10 @@ services:
       - neurodoc_network
     restart: always
 
-  # 🐍 SOVEREIGN MODEL CONTEXT PROTOCOL (MCP) HUB & RAG ENGINE
-  mcp_server_python:
-    image: neurodoc/mcp-server:latest
-    container_name: neurodoc_python_mcp
+  # NATIVE C CODEBASE-MEMORY PROTOCOL HUB & GRAPH INFERENCE
+  cbm_knowledge_graph:
+    image: neurodoc/cbm-mcp-engine:latest
+    container_name: neurodoc_c_mcp_graph
     deploy:
       resources:
         reservations:
@@ -107,4 +107,4 @@ services:
     networks:
       - neurodoc_network
     restart: always
-```
+    ```
