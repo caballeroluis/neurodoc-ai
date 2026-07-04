@@ -203,7 +203,7 @@ Most organizations treat local AI infrastructure as an afterthought or a seconda
      │                                                     │
      ▼                                                     ▼
 [ External Cloud Frontier API ]                  [ Sovereign Local Core ]
-(High-Speed Acceleration)                        (Isolated Debian AMD • ChromaDB)
+(High-Speed Acceleration)                        (Debian Mesh • llama.cpp • Hermes)
      │                                                     │
      ▼                                                     ▼
 [ Volatile Inference / High Risk ]               [ Deterministic Baseline Support ]
@@ -299,7 +299,7 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
   * **The Action:** The developer prompts the local agent to refactor a legacy hexagonal port. Instead of generating generic code, the native C-MCP server queries the local persistent knowledge graph via Cypher to instantly feed the IDE context window with precise cross-service HTTP routes and call-graph dependencies.
   * **The Target:** Eliminate context blindness and achieve a 99% reduction in token consumption by avoiding raw file-by-file text scraping and replacing traditional read loops with structural graph diffusion before core model inference.
 
-- [-] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
+- [ ] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
   * **The Setup:** Connect a local point-of-sale (POS) mock database containing 3 years of workshop repair tickets and groupset inventory history.
   * **The Chaos:** Simulate an overnight pricing volatility surge or supply chain bottleneck from major component manufacturers right before the seasonal repair peak.
   * **The Recovery:** The GPU-accelerated analytical engine running native JNI/cuDF bindings executes localized predictive forecasting over the tokenized data. It generates an optimized, prioritized JIT procurement schedule directly to the workshop's ledger, preventing active capital immobilization in low-turnover items.
@@ -314,3 +314,9 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
   * **The Action:** The engineer triggers a localized build extraction. Without refactoring, modifying, or rewriting a single line of core business logic, the outer technical layer unplugs the `governance` and `analytics` vertical slices from the repository tree.
   * **The Recovery via Hexagonal Design:** Because the system enforces strict **Vertical Slicing** and domain-level boundary isolation inside Spring Boot 3, the independent `legal` module coupled with the `shared` structural kernel remains completely functional. The package compiles immediately as a standalone, lightweight, single-tenant or multi-tenant deployment artifact ready for client delivery.
   * **The Target:** Prove zero cross-domain coupling and absolute architectural portability, converting a decentralized monorepo into modular, highly-monetizable enterprise assets in minutes.
+
+- [ ] **Target Demo 08: The Transatlantic Time-Zone VRAM Sharing Gate (For Intra-Continental SMEs)**
+  * **The Setup:** Two independent companies operating on identical Hexagonal implementations of NeuroDoc AI are located in different continents (e.g., Madrid, Spain and Bogotá, Colombia), creating a natural 5-to-7-hour time-zone offset.
+  * **The Chaos:** Expensive multi-GPU rigs sit idle and underutilized overnight in Spain while the Colombian office faces heavy, concurrent mid-day agentic workloads that saturate local hardware constraints.
+  * **The Recovery via Hexagonal Design:** The immutable core domain detects the regional shift automatically via network latency or clock telemetry timeouts. Because the business logic is strictly decoupled behind an abstract outbound adapter layer (Ports/Adapters), the system triggers an agile, automated hot-swap event. It detaches the offline European node infrastructure and instantly plugs in the transatlantic P2P compute fabric (`Exo/Podman mesh`) as the active resource adapter, scaling or shedding VRAM capacities in milliseconds without modifying a single line of core code.
+  * **The FinOps Target:** Double the computational throughput of both regional nodes by swapping idle VRAM resources based on the rotation of the Earth. Achieve absolute zero cloud OpEx scaling, maintaining strict client data isolation and absolute infrastructure sovereignty without renting public cloud virtualization layers.
