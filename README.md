@@ -79,15 +79,15 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 
 ### 1. For Software Developers (Active Code Governance & Environmental Memory)
 * **The Problem:** Exponential technical debt degradation across enterprise repositories due to unregulated code injection from generative AI tools. Short-lived commercial AI assistants function within static silos, treating every prompt as a blank slate. Lacking a persistent memory of the project environment, they introduce volatile 'Auto-Fix' code patches under tight delivery deadlines.
-- **The NeuroDoc Solution:** Intercepción automática mediante binario `ai-governance` en Rust que analiza deltas de git en cada commit. Evitando middleware pesado, el sistema logra latencia cero en hardware local. Un interceptor nativo procesa estructuras AST antes de la ejecución LLM, anclando el flujo al contexto global en ChromaDB. El cumplimiento semántico final se delega a un `llama.cpp` compilado a medida ejecutando `Hermes Agentic` en C/C++, bloqueando commits en milisegundos y optimizando la VRAM local.
+* **The NeuroDoc Solution:** Intercepción automática mediante binario `ai-governance` en Rust que analiza deltas de git en cada commit. Evitando middleware pesado, el sistema logra latencia cero en hardware local. Un interceptor nativo procesa estructuras AST antes de la ejecución LLM, mapeando dependencias exactas en sub-milisegundos a través de un motor en C estático (`codebase-memory-mcp`). El cumplimiento semántico final se delega a un `llama.cpp` compilado a medida ejecutando `Hermes Agentic` en C/C++, bloqueando commits en milisegundos y optimizando la VRAM local.
 
 ### 2. For Bike Shops / Specialized Retailers (Inventory & Cash Flow Optimization)
 * **The Problem:** Recurrent cash flow crunches triggered by passive procurement management. This leads to costly out-of-stock scenarios during high-demand peaks alongside stagnant capital tied up in low-turnover items.
 * **The NeuroDoc Solution:** Predictive data analytics module. It ingests historical point-of-sale (POS) data through analytic pipelines, rendering demand forecasts that optimize Just-In-Time (JIT) stock restocking while protecting the business's working capital.
 
 ### 3. For Major Legal Consulting Firms (Data Sovereignty & Sealed RAG)
-* **The Problem:** Inability to leverage large language models for internal contract audits due to severe compliance risks regarding public cloud data leaks, professional secrecy, and strict GDPR requirements.
-* **The NeuroDoc Solution:** A secure enterprise On-Premise RAG platform. It implements metadata-driven multi-tenant isolation. Document ingestion of jurisprudence and LLM inference occur entirely within the boundaries of the physical On-Premise server, ensuring absolute client privacy.
+* **The Problem:** Inability to leverage large language models for internal contract audits due to severe compliance risks regarding public cloud data leaks, professional secrecy, and strict GDPR requirements. Traditional vector RAG systems fail here because flat keyword matches lack the capacity to link separate, non-linear jurisprudence or overlapping contractual clauses.
+* **The NeuroDoc Solution:** A secure enterprise On-Premise Sealed RAG platform that structures text intelligence via a Local Semantic Knowledge Graph. Document ingestion of jurisprudence and sensitive corporate contracts are parsed into a network of explicitly typed conceptual edges (`refuerza`, `contrasta_con`), enabling deep compliance audits. Inference occurs entirely within the physical boundaries of the local bare-metal server executing via `llama.cpp` with zero data telemetry leakage.
 
 ---
 
@@ -96,6 +96,14 @@ The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly 
 NeuroDoc AI rejects blind LLM orchestration. To minimize latency, save VRAM, and avoid token-drain, the governance loop splits code validation into three isolated steps, separating deterministic calculations from semantic reasoning.
 
 In practice, this loop shifts architecture guidelines from dead documentation into executable guardrails: the system matches live git diffs against the senior engineering team's explicit rules stored in `/docs`, automating the pull request compliance audit before any code hits the remote repository.
+
+### The Dual-Engine Graph Architecture (Context Isolation & Semantics)
+
+To achieve absolute multi-tenant data sovereignty and completely eliminate cross-tool context blindness across distinct pipelines, the reference design enforces a non-competing, dual-graph parsing strategy before committing resources:
+
+* **The Code Footprint (Structural AST):** Managed natively by a statically linked C engine ([codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)). It extracts repository structures, tracking strict code dependencies (`CALLS`, `IMPORTS`, `INHERITS`) directly from the source file layouts using Tree-sitter. This deterministic layer handles massive enterprise code repositories at $0 cloud OpEx, slicing prompt token consumption by 99% by serving only the exact lines of code required for validation.
+* **The Core Knowledge (Semantic Graph):** Modeled after enterprise-grade open-source graph frameworks like [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify?ref=aiposthub.com). It parses unstructured corporate documentation, legal compliance guidelines, and architecture axioms into a typed concept network with directional edges (`refuerza`, `contrasta_con`). By routing the backend variables via local network configurations (`OPENAI_BASE_URL` targeting a self-hosted `llama.cpp` instance running `Hermes Agentic` weights), the system executes non-linear reasoning over thousands of sensitive pages (Target Demo 06) with absolute zero telemetry leakage.
+* **The Paradigm Invariant:** Code isolates the exact structural map of the repository infrastructure; Semantics governs the cognitive map of the business domain guidelines.
 
 > [!TIP]
 > **Maximize Pipeline Precision:** Feed the `/docs` incubator with highly modular, isolated markdown files (e.g., explicit layer boundary definitions, concrete security annotation requirements, or naming conventions). The more atomic and clear the senior team's written constraints are, the more precise the mathematical vector retrieval becomes in Phase 2, resulting in zero LLM hallucinations during final inference.
@@ -274,7 +282,7 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
 * [ ] **Phase 2: Git Interceptor Core** – Finalizing the native `ai-governance` Rust component for efficient `git diff` analysis.
 * [ ] **Phase 3: Standardized C-MCP Layer** – Deploying the statically linked C Model Context Protocol engine to stream unified compliance rules to third-party IDE nodes.
 * [ ] **Phase 4: Architecture Metrics Dashboard** – Frontend UI to track core domain coupling and monitor linting compliance scores across repository branches.
-* [ ] **Phase 5: Multi-Tenant Data Isolation** – Implementing Row-Level Security (RLS) in PostgreSQL and metadata namespaces in ChromaDB to guarantee strict tenant partition.
+* [ ] **Phase 5: Multi-Tenant Data Isolation** – Implementing Row-Level Security (RLS) in PostgreSQL and multi-tenant concept isolation rules inside the Local Semantic Graph (`Graphify`) to guarantee strict partition of business intelligence and corporate documentation.
 
 ## Future Architectural Aspirations (Long-Term Demo Target)
 
@@ -292,12 +300,12 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
 - [ ] **Target Demo 03: Real-Time Governance Shift (The Junior Anti-Malpractice Gate)**
   * **The Setup:** A junior developer uses commercial generative AI assistants to aggressively inject code, inadvertently introducing bad practices, coupling anomalies, or architectural drift.
   * **The Action:** A senior architect drops a brand-new markdown style guide or infrastructure layout standard inside the local `/docs` folder. 
-  * **The Enforcement:** The vector database (**ChromaDB**) indexes the update instantly. On the very next git push event, the native Rust interceptor captures the delta stream, validates it against the fresh architectural axioms, and automatically rejects the commit. The junior is instantly blocked from deploying anti-patterns without requiring manual senior code review.
+  * **The Enforcement:** The local semantic knowledge graph engine ([Graphify](https://github.com/Graphify-Labs/graphify)) parses and indexes the update instantly into explicitly typed conceptual relations. On the very next git push event, the native Rust interceptor captures the delta stream, validates the structural AST against the fresh architectural axioms, and automatically rejects the commit. The junior is instantly blocked from deploying anti-patterns without requiring manual senior code review.
 
 - [ ] **Target Demo 04: The Environmental Memory Graph Sync (For Software Developers)**
-  * **The Setup:** Open separate isolated development environments on a complex repository mesh.
-  * **The Action:** The developer prompts the local agent to refactor a legacy hexagonal port. Instead of generating generic code, the native C-MCP server queries the local persistent knowledge graph via Cypher to instantly feed the IDE context window with precise cross-service HTTP routes and call-graph dependencies.
-  * **The Target:** Eliminate context blindness and achieve a 99% reduction in token consumption by avoiding raw file-by-file text scraping and replacing traditional read loops with structural graph diffusion before core model inference.
+    - **The Setup:** Open separate isolated development environments across a highly complex repository mesh with evolving microservices modules.
+    - **The Action:** The developer prompts the local agent tool to refactor a legacy hexagonal port interface. Instead of generating generic boilerplate, the integrated MCP server layer queries the dual-topology graph pipeline concurrently. It resolves strict code layouts via the native C-MCP engine (`codebase-memory-mcp`) while pulling architectural guidelines from the semantic concept mesh (`Graphify`).
+    - **The Target:** Eliminate cross-tool context blindness and feed the IDE context window instantly with precise call-graph dependencies and explicit compliance rules. Achieve a 99% reduction in prompt token consumption by avoiding flat, file-by-file text scraping and replacing traditional read loops with targeted graph diffusion before core model inference.
 
 - [ ] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
   * **The Setup:** Connect a local point-of-sale (POS) mock database containing 3 years of workshop repair tickets and groupset inventory history.
@@ -307,7 +315,7 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
 - [ ] **Target Demo 06: Zero-Knowledge Jurisprudence Audit (For Legal Consulting Firms)**
   * **The Setup:** Ingest 10,000 pages of sensitive, highly confidential corporate contracts and jurisprudence data inside the local network perimeter.
   * **The Action:** Run a deep compliance and audit query from an external legal workstation targeting the local model endpoint.
-  * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The entire embedding generation, vector matching inside ChromaDB, and LLM inference occur strictly within the physical boundaries of the local bare-metal server, proving zero telemetry packets leakage to public cloud infrastructure.
+  * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The integrated semantic knowledge graph navigates the non-linear network topology of the unstructured text, verifying clauses through conceptual connections without public cloud data leakage. The entire graph query loop and local LLM inference (`llama.cpp`) occur strictly within the physical boundaries of the local bare-metal server.
   
 - [ ] **Target Demo 07: The Microservices Extraction & Commercial Packaging Gate (For B2B Enterprise Ventures)**
   * **The Setup:** A client (e.g., a Major Legal Consulting Firm) requests to license exclusively the On-Premise Sealed RAG framework, explicitly demanding the total removal of unrelated operational modules (such as Developer Governance or Bike Retail Predictive Analytics).
