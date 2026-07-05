@@ -1,13 +1,12 @@
 // =============================================================================
 // NEURODOC AI - DETERMINISTIC DOMAIN ARCHITECTURE NOTES (FUTURE IMPLEMENTATION)
-// Target Module: backend-core / Layer: Domain Logic Rules
+// Target Module: backend-core / Layer: Domain Logic Rules & Future gRPC Ports
 // Objective: Neutralize AI non-determinism and eliminate "Prompt Debt".
-// Strategy: Separate Semantic Extraction (AI) from Final Governance Verdict (Java).
+// Strategy: Migrate core orchestrator to Spring Boot 4.1.0 to leverage native gRPC 
+//           binary streams (Protobuf) instead of traditional web JSON overhead.
 // =============================================================================
 
 package com.neurodoc.core.domain.model;
-
-import java.util.Map;
 
 /**
  * Concrete implementation blueprint of the CodeValidatorPort.
