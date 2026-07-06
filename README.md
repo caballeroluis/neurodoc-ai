@@ -12,7 +12,6 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-005571.svg?style=for-the-badge&logo=fastapi)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
@@ -46,6 +45,8 @@ neurodoc-ai/
         │   │   ├── model/     <-- Domain entities and value objects
         │   │   └── port/      <-- Inbound/Outbound interface definitions
         │   │       └── CodeValidatorPort.java <-- Active interface rule definition
+        │   ├── application/   <-- Use Cases (Orchestrating code enforcement loops)
+        │   └── infrastructure/<-- Ports & Adapters (ArchUnit engines, Spring configuration)
         ├── analytics/         <-- Slice 02: Predictive Forecasting (Bike Retail POS pipelines)
         │   ├── domain/        <-- Demand forecasts and inventory JIT cash-flow math
         │   ├── application/   <-- Use Cases (Calculate seasonal restocking schedules)
