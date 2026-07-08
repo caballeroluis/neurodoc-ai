@@ -282,7 +282,25 @@ This framework ensures that enterprise intelligence never runs unmetered: True g
 
 ---
 
-* Have a optimization or want to propose **[IDEA-004]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+### [IDEA-004] AI-Native Runtime Control Plane & Ephemeral Sandbox (Delegated Agent Governance)
+
+#### Origin of the Idea: Real-World Infrasignment
+This architecture paradigm expands the standard Model Context Protocol (MCP) tool-calling lifecycle by incorporating an AI-native post-authentication Runtime Control Plane tailored for next-generation framework specifications. It targets the security vacuum that remains after an autonomous agent passes initial validation gates, preventing hallucinated or injected AI agents from executing unauthorized host mutations or privilege escalations (`sudo`, restricted directory writes) during long-lived concurrent sessions.
+
+- **Status:** Conceptual Draft / Architectural Design Phase
+- **Target Flaw:** Post-authentication privilege drift, uncontrolled autonomous sub-processes, and non-deterministic agent execution on host bare-metal infrastructure.
+
+#### The Philosophy: Dynamic Runtime Constraints over Coarse ACLs
+NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the local model (INT4 Qwen Coder via native `llama.cpp` runtime) is constrained within raw C/C++ memory isolation boundaries, the execution layer enforces an ongoing runtime zero-trust mesh. The system continuously evaluates agent requests at method-level via `@Protectable` aspects—fully refactored and ported to run natively under Spring Boot 4.1.0 environments—moving beyond static rules into active real-time interception.
+
+#### Technical Mechanics & Hybrid Execution Layers:
+1. **JVM 4.1 Runtime Interception (`@Protectable`)**: The Spring Boot 4.1.0 core establishes a 5-action dynamic decision path (ALLOW · CHALLENGE · BLOCK · ESCALATE · PENDING). Tool-calling requests are dynamically parsed; if behavioral context drifts or an anomalous command sequence is generated, the runtime applies a `BLOCK` state to freeze the execution thread before it ever touches native OS pipes.
+2. **Deterministic Command Whitelisting (Rust AST Guard)**: Allowed intents are tokenized by a statically linked Rust binary (`ai-governance`). Any command containing `sudo`, shell chaining markers, or modifications to host configurations (`/etc`, `/proc`) triggers an immediate infrastructure protection fault.
+3. **Rootless Podman Isolation Sandbox**: Validated execution primitives are forcefully wrapped and executed inside ephemeral, rootless Podman container environments. The delegated agent interacts with a synthetic read-only view of the host, restricting exploitation surface to exactly $0 persistent system impact.
+
+---
+
+* Have a optimization or want to propose **[IDEA-005]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
 ##  Roadmap Milestones & Horizon (In Development)
 
