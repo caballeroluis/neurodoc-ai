@@ -303,7 +303,7 @@ NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the
 ### [IDEA-005] KV-Cache Splitting Protocol (Asymmetric Context Slicing)
 
 #### Origin of the Idea: Real-World Infrasignment
-Conceived during high-concurrency simulation stress tests alongside infrastructure operations to target a critical hardware bottleneck: VRAM depletion during long-context agentic code reviews. This approach is structurally inspired by the open-source architecture of `spectrayan/spector`, adapting its low-overhead context memory principles into a dual-engine JVM mesh. When multiple developers trigger simultaneous push workflows evaluating dense multi-file contexts (32K+ tokens), system failure is driven not by model weights, but by Key-Value (KV) Cache saturation causing Out-Of-Memory (OOM) fatal drops.
+Conceived during high-concurrency simulation stress tests alongside infrastructure operations to target a critical hardware bottleneck: VRAM depletion during long-context agentic code reviews. This approach is structurally inspired by the open-source architecture of `spectrayan/spector` and maps directly into Kubernetes-native GPU-sharing layers such as HAMi (CNCF Incubating) to enforce hard-isolation boundaries. When multiple developers trigger simultaneous push workflows evaluating dense multi-file contexts (32K+ tokens), system failure is driven not by model weights, but by Key-Value (KV) Cache saturation causing Out-Of-Memory (OOM) fatal drops.
 
 - **Status:** Conceptual Draft / Architectural Design Phase
 - **Target Flaw:** Local hardware multi-tenant VRAM saturation, context-blindness overhead, and systemic memory-graph blocking bottlenecks.
