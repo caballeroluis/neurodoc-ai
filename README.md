@@ -302,62 +302,53 @@ NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the
 
 ### [IDEA-005] KV-Cache Splitting Protocol (Asymmetric Context Slicing)
 
-#### Origin of the Idea: Real-World Infrasignment
-Conceived during high-concurrency simulation stress tests alongside infrastructure operations to target a critical hardware bottleneck: VRAM depletion during long-context agentic code reviews. This approach is structurally inspired by the open-source architecture of `spectrayan/spector` and maps directly into Kubernetes-native GPU-sharing layers such as HAMi (CNCF Incubating) to enforce hard-isolation boundaries. When multiple developers trigger simultaneous push workflows evaluating dense multi-file contexts (32K+ tokens), system failure is driven not by model weights, but by Key-Value (KV) Cache saturation causing Out-Of-Memory (OOM) fatal drops.
-
-- **Status:** Conceptual Draft / Architectural Design Phase
-- **Target Flaw:** Local hardware multi-tenant VRAM saturation, context-blindness overhead, and systemic memory-graph blocking bottlenecks.
+- **Status**: Conceptual Draft / Architectural Design Phase
+- **Target Flaw**: Multi-tenant VRAM saturation and OOM drops on local hardware under concurrent long-context (32K+) reviews.
+- **Ecosystem Compliance**: Maps into Kubernetes-native GPU-sharing layers (`HAMi / CNCF Incubating`) and engine-independent KV-cache managers (`LMCache / PyTorch Foundation`), structurally inspired by `spectrayan/spector`. Decouples volatile memory states to enable out-of-process daemon offloading spanning local RAM, SSD arrays, and continuous **PostgreSQL + pgvector** persistence layers.
 
 #### Technical Mechanics & Layer-7 Core Routing:
-1. **Asynchronous Pre-Parsing**: The Spring Boot 4.1.0 backend isolates incoming payloads, stripping static architectural rules (`/docs`) and processing them independently via the native C-core engine (`codebase-memory-mcp`).
-2. **Forward-Pass Slicing (Tensor-Level Hot Swap)**: Instead of staging the entire contextual state, the native Rust handler injects data into the `llama.cpp` runtime in sequence—staging the solution graph first and injecting code syntactical diffs exclusively during the forward pass.
-3. **VRAM Flushing Loop**: Upon token compilation, the transient KV-Cache footprint is instantaneously purged from graphic memory and serialized as a binary vector baseline within the localized PostgreSQL + pgvector cluster, freeing hardware memory within milliseconds at a strict $0 token penalty.
+1. **Asynchronous Pre-Parsing**: The Spring Boot 4.1.0 backend isolates incoming payloads, stripping static criteria (`/docs`) to process them independently via the native C-core engine (`codebase-memory-mcp`).
+2. **Forward-Pass Slicing**: The native Rust handler streams block sequences into the `llama.cpp` runtime—staging the solution graph first and injecting code syntactical diff components exclusively during the forward pass.
+3. **VRAM Flushing Loop**: Upon token compilation, the transient KV-Cache footprint is instantaneously flushed from graphic memory and serialized as binary vector tracks inside the PostgreSQL cluster at a flat token cost of $0.
 
 ### [IDEA-006] Anti-Synthetic Ingestion Filter (Structural Entropy Guard)
 
-#### Origin of the Idea: Real-World Infrasignment
-Designed as an autonomous defense mechanism to protect local RAG vector spaces against corporate data cannibalism and model degradation. As repositories become saturated with low-entropy, repetitive code blocks produced blindly by centralized public cloud assistants, localized codebases suffer from severe semantic drift if synthetic garbage is ingested into the persistent vector memory.
-
-- **Status:** Conceptual Draft / Architectural Design Phase
-- **Target Flaw:** Data cannibalism, persistent vector space pollution, and architectural degradation via automated synthetic code ingestion loops.
+- **Status**: Conceptual Draft / Architectural Design Phase
+- **Target Flaw**: Persistent vector space pollution, corporate data cannibalism, and semantic drift driven by repetitive code loops generated blindly by centralized cloud assistants.
 
 #### Technical Mechanics & Verification:
-1. **Entropy Auditing Interceptor**: The native `ai-governance` binary in Rust intercepts ingress Git diff components, calculating structural code entropy and measuring predictable mathematical syntax signatures.
-2. **Deterministic Pre-Inference Evaluation**: If the syntactic composition yields a deterministic footprint matching vanilla public cloud templates (low structural entropy), the engine flags the code delta with an infrastructure classification warning.
-3. **ChromaDB Ingestion Exclusion Boundary**: Flagged code blocks are permitted to execute locally but are strictly forbidden from indexing as persistent semantic anchors inside ChromaDB, ensuring that only verified human engineering patterns form the long-term enterprise core memory space.
+1. **Entropy Auditing Interceptor**: The native `ai-governance` binary in Rust intercepts ingress Git diff strings, calculating structural entropy and measuring predictable mathematical syntax signatures.
+2. **Deterministic Pre-Inference Evaluation**: If the syntactic composition yields a deterministic footprint matching low-entropy public templates, the engine flags the delta with an infrastructure warning.
+3. **ChromaDB Exclusion Boundary**: Flagged code blocks execute locally but are strictly forbidden from indexing as persistent semantic anchors inside ChromaDB, preserving long-term core memory space exclusively for verified human engineering patterns.
+
+---
 
 ### [IDEA-007] Zero-Trust Prompt Cleansing Mesh (Anti-Unicode Fingerprinting)
 
-#### Origin of the Idea: Real-World Infrasignment
-Conceived as an abstract infrastructure defense layer to neutralize data-exfiltration backdoors, telemetry-injection vectors, and untrusted token tracking mechanisms. This implementation integrates and scales the aspect-oriented post-authentication runtime control plane concepts originally mapped by `contexa-security/contexa`, porting them natively into a polyglot network defense layer.
-
-- **Status:** Conceptual Draft / Architectural Design Phase
-- **Target Flaw:** Obfuscated binary backdoor execution, invisible Unicode signal fingerprinting, and untrusted agentic system prompt rewriting.
+- **Status**: Conceptual Draft / Architectural Design Phase
+- **Target Flaw**: Obfuscated binary backdoor execution, invisible Unicode signal fingerprinting, and untrusted runtime system prompt overwrites.
 
 #### Technical Mechanics & Isolation Gates:
-1. **Aspect-Oriented Input Sanitization**: Leveraging Spring Boot 4.1.0 runtime aspects (`@Protectable`), all string payloads generated by execution tools or agent loops are intercepted before downstream model pipes can evaluate them.
-2. **Rust-Driven Lexical Laundering**: The string stream is fed into the native `ai-governance` pipeline. The analyzer cleanses and strips all non-standard invisible homoglyphs, non-printing character sets, or hidden Unicode markers, mapping anomalous dash/slash transformations back to a deterministic state.
-3. **Immutable Prompt Assertions**: Enforces strict compile-time template boundaries that prevent multi-agent or third-party binaries from rewriting system invariants, guaranteeing complete isolation on your local hardware at a flat token cost of $0.
+1. **Aspect-Oriented Input Sanitization**: Leveraging Spring Boot 4.1.0 aspects (`@Protectable`), all string payloads generated by execution tools or agent loops are intercepted post-authentication before downstream model evaluation, building upon the control plane runtime concepts of `contexa-security/contexa`.
+2. **Lexical Laundering**: The string stream is piped into the native `ai-governance` Rust pipeline, stripping non-standard invisible homoglyphs, non-printing character sets, or hidden Unicode markers back to a deterministic state.
+3. **Immutable Prompt Assertions**: Enforces strict compile-time template boundaries that prevent multi-agent or third-party binaries from rewriting system invariants at a flat token cost of $0.
 
 ---
 
 ### [IDEA-008] Bare-Metal Hardware Actuation Mesh (Sovereign KVM Isolation & Enterprise Compliance Enclosure)
 
-#### Origin of the Idea: Real-World Infrasignment
-Conceived to eliminate the heavy CPU/VRAM overhead and hypervisor escape risks of running local virtual machines (VMs) for autonomous agent tool execution and pre-boot enterprise workstation auditing. Instead of hosting volatile code or untrusted terminal operations on the master machine, this infrastructure layer leverages local micro-KVM hardware (such as NanoKVM-Go) embedded with a native MCP server to execute, monitor, and audit tasks directly over separate physical client computers.
-
 - **Status**: Conceptual Draft / Architectural Design Phase
-- **Target Flaw**: Heavy CPU/VRAM footprint of local hypervisors, software-defined container breakout vulnerabilities, and total blindness of traditional endpoint security agents during pre-boot states (BIOS/UEFI manipulation or unauthorized Live-USB ingestion).
+- **Target Flaw**: Software-defined container escapes, compute overhead of local guest hypervisors, and total endpoint security blindness during pre-boot states (BIOS/UEFI manipulation or unauthorized Live-USB ingestion).
 
 #### Architectural Advantages vs Single-VM Isolation:
-* **Zero Resource Tax**: Operating local VMs forces the master host to allocate fixed CPU threads, RAM, and massive VRAM footprints just to keep guest operating systems alive. This micro-KVM approach offloads 100% of the execution load to separate secondary hardware, saving all host resources to run deep **Mixture of Experts (MoE)** models locally at a flat $0 token penalty.
-* **True Physical Air-Gapping**: Hypervisor escapes are critical flaws where malware breaks out of virtualized environments into the host kernel. By shifting tool executions and automated pericial scans to an external machine via KVM, there is no shared memory, no shared kernel, and no software layer to exploit.
-* **Pre-Boot & Bare-Metal Audit Rail**: Traditional software compliance tools are blind when a system restarts. By operating externally at the hardware layer, the platform continuously monitors client states even during BIOS/UEFI access or unauthorized boot overrides via external live media, capturing data independently of the target OS status.
+* **Zero Resource Tax**: Offloads 100% of the agent actuation load to detached secondary hardware, saving host CPU/VRAM threads to run deep **Mixture of Experts (MoE)** models locally.
+* **True Physical Air-Gapping**: Eliminates hypervisor escape vectors by removing shared kernels, shared memory, and software virtualization layers from the primary host.
+* **Pre-Boot & Bare-Metal Audit Rail**: Monitors target devices independently of the client OS status, capturing states continuously even during firmware access or external boot overrides.
 
 #### Technical Mechanics & Hardware Actuation:
-1. **Physical Key/Mouse Injection**: The orchestrator has no direct file-system connection to the target machine. Instructions are translated into mechanical Keyboard/Video/Mouse (KVM) inputs over the micro-controller, typing and clicking on the target metal via network-bound hardware emulation.
-2. **Visual Feedback Loop (HDMI Pixel Analysis)**: The native Rust engine captures the physical video display buffer directly from the KVM's HDMI interface. The platform parses raw pixel screen states to verify command outputs and boot-sequence modifications rather than reading internal text logs, neutralizing indirect prompt injection backdoors and hidden runtime rootkits.
-3. **Hardware-Level Blast Radius**: If the audited device triggers a destructive script or encounters firmware manipulation, the damage is physically trapped on the secondary piece of hardware. The master orchestrator can trip power relays to hard-reset, isolate, or reflash the target device in milliseconds, ensuring a 0% risk to the core **master Debian host**.
+1. **Physical Input Injection**: The orchestrator has no direct file-system connection to the target machine. Instructions are translated into mechanical Keyboard/Video/Mouse (KVM) signals over a microcontroller (`NanoKVM-Go`), typing and clicking on the target metal via network-bound hardware emulation.
+2. **Visual Feedback Loop (Pixel-Native Ingestion)**: The native Rust engine orchestrates screen analysis by leveraging a pixel-native retrieval architecture (inspired by Berkeley's `StarTrail-org/PixelRAG`). By streaming local frame captures directly into a localized Qwen3-VL-Embedding vision space, the system cross-references state changes and terminal layouts purely on raw pixel data, bypassing application-layer log injection vectors and hidden runtime rootkits.
+3. **Hardware-Level Blast Radius**: Any compromise remains physically trapped inside the secondary piece of hardware. The master orchestrator trips power relays to hard-reset, isolate, or reflash the target device in milliseconds, ensuring a 0% structural risk to the core **master Debian host**.
 
 ---
 
