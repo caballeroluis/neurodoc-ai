@@ -10,7 +10,6 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
@@ -291,7 +290,7 @@ This architecture paradigm expands the standard Model Context Protocol (MCP) too
 - **Target Flaw:** Post-authentication privilege drift, uncontrolled autonomous sub-processes, and non-deterministic agent execution on host bare-metal infrastructure.
 
 #### The Philosophy: Dynamic Runtime Constraints over Coarse ACLs
-NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the local model (INT4 Qwen Coder via native `llama.cpp` runtime) is constrained within raw C/C++ memory isolation boundaries, the execution layer enforces an ongoing runtime zero-trust mesh. The system continuously evaluates agent requests at method-level via `@Protectable` aspects—fully refactored and ported to run natively under Spring Boot 4.1.0 environments—moving beyond static rules into active real-time interception.
+NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the local model (INT4 Qwen Coder via native `llama.cpp` runtime) is constrained within raw C++ memory isolation boundaries, the execution layer enforces an ongoing runtime zero-trust mesh. The system continuously evaluates agent requests at method-level via `@Protectable` aspects—fully refactored and ported to run natively under Spring Boot 4.1.0 environments—moving beyond static rules into active real-time interception.
 
 #### Technical Mechanics & Hybrid Execution Layers:
 1. **JVM 4.1 Runtime Interception (`@Protectable`)**: The Spring Boot 4.1.0 core establishes a 5-action dynamic decision path (ALLOW · CHALLENGE · BLOCK · ESCALATE · PENDING). Tool-calling requests are dynamically parsed; if behavioral context drifts or an anomalous command sequence is generated, the runtime applies a `BLOCK` state to freeze the execution thread before it ever touches native OS pipes.
@@ -310,6 +309,7 @@ NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the
 1. **Asynchronous Pre-Parsing**: The Spring Boot 4.1.0 backend isolates incoming payloads, stripping static criteria (`/docs`) to process them independently via the native C-core engine (`codebase-memory-mcp`).
 2. **Forward-Pass Slicing**: The native Rust handler streams block sequences into the `llama.cpp` runtime—staging the solution graph first and injecting code syntactical diff components exclusively during the forward pass.
 3. **VRAM Flushing Loop**: Upon token compilation, the transient KV-Cache footprint is instantaneously flushed from graphic memory and serialized as binary vector tracks inside the PostgreSQL cluster at a flat token cost of $0.
+4. **Hardware-Native Polyglot Orchestration**: The Spring Boot 4.1.0 control plane leverages Java's modern *Foreign Function & Memory API (Project Panama)* to allocate non-GC off-heap segments and execute zero-overhead foreign downcalls directly into the native C++/Rust vector memory space. This completely eliminates JNI marshalling bottlenecks, allowing the orchestration layer to command raw GPU-accelerated environments at C-level execution speed.
 
 ### [IDEA-006] Anti-Synthetic Ingestion Filter (Structural Entropy Guard)
 
