@@ -12,7 +12,6 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
 NeuroDoc AI is an enterprise-grade reference ecosystem for hybrid engineering designed to resolve business inefficiencies and automate code governance using local On-Premise Artificial Intelligence. The project prioritizes absolute data sovereignty, strict multi-tenant isolation, and strict cloud cost optimization through a decoupled architecture running on self-hosted hardware.
 
