@@ -25,36 +25,51 @@ The backend ecosystem strictly rejects monolithic package structures that grow i
 
 ```text
 neurodoc-ai/
-├── .github/workflows/         <-- CI/CD: Public showcase pipeline (Automated testing gates)
-├── .gitea/workflows/          <-- CI/CD: On-Premise GitOps engine (Hermetic local execution)
-├── ai-governance/             <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
-│   └── src/main.rs            <-- Blistering fast 'git diff' stream capture & data encoding
-├── cbm-knowledge-graph/       <-- Statically linked C codebase-memory MCP server
-├── frontend-control/          <-- Presentation Layer: Visual Dashboard (Agility Semaphores)
-├── docs/                      <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
-│   ├── 01-isolation-rules.md  <-- Core domain isolation metrics
-│   └── 02-hexagonal-layers.md <-- Interface plugs and hardware technical specifications
-├── infra/                     <-- Homelab Orchestration Hub
-│   └── docker-compose.yml     <-- Local network topology & cross-runtime persistence layers
+├── neurodoc-ai-client/          <-- THE EDGE BOUNDARY (Sovereign Single-User Bare-Metal Node)
+│   ├── .github/workflows/       <-- CI/CD: Public showcase pipeline (Automated testing gates)
+│   ├── .gitea/workflows/        <-- CI/CD: On-Premise GitOps engine (Hermetic local execution)
+│   ├── ai-governance/           <-- Edge CI/CD Gateway: Low-overhead pipeline interceptor (Rust)
+│   │   └── src/main.rs          <-- Blistering fast 'git diff' stream capture & data encoding
+│   ├── cbm-knowledge-graph/     <-- Statically linked C codebase-memory MCP server
+│   ├── colibri-hub/             <-- Off-heap MoE streaming engine running from NVMe at cost $0
+│   └── frontend-control/        <-- Presentation Layer: Visual Dashboard (Agility Semaphores)
 │
-└── backend-core/              <-- The Single Source of Truth: Core Domain (Spring Boot 3)
-        ├── governance/        <-- Slice 01: Active Code Governance
-        │   ├── domain/        <-- Pure Framework-less Business Rules (Compliance axioms)
-        │   │   ├── model/     <-- Domain entities and value objects
-        │   │   └── port/      <-- Inbound/Outbound interface definitions
-        │   │       └── CodeValidatorPort.java <-- Active interface rule definition
-        │   ├── application/   <-- Use Cases (Orchestrating code enforcement loops)
-        │   └── infrastructure/<-- Ports & Adapters (ArchUnit engines, Spring configuration)
-        ├── analytics/         <-- Slice 02: Predictive Forecasting (Bike Retail POS pipelines)
-        │   ├── domain/        <-- Demand forecasts and inventory JIT cash-flow math
-        │   ├── application/   <-- Use Cases (Calculate seasonal restocking schedules)
-        │   └── infrastructure/<-- Ports & Adapters (POS mock DB adapters, ledger connectors)
-        ├── legal/             <-- Slice 03: Sealed RAG Platform (Jurisprudence audit)
-        │   ├── domain/        <-- Strict metadata-driven multi-tenant isolation rules
-        │   ├── application/   <-- Use Cases (Contract compliance scanning, file ingestion)
-        │   └── infrastructure/<-- Ports & Adapters (On-Premise PDF extractors, local isolation)
-        └── shared/            <-- Cross-cutting structural utilities (Kernel-level common code)
+├── neurodoc-ai-server/          <-- THE CENTRAL ORCHESTRATOR (Multi-Tenant Relational Engine)
+│   ├── docs/                    <-- Engineering Knowledge Base (Indexed into ChromaDB Vector Store)
+│   │   ├── 01-isolation-rules.md<-- Core domain isolation metrics
+│   │   └── 02-hexagonal-layers.md<-- Interface plugs and hardware technical specifications
+│   ├── infra/                   <-- Homelab Orchestration Hub (Local network topology)
+│   │   └── docker-compose.yml   <-- Cross-runtime persistence layers (Postgres + ChromaDB)
+│   └── backend-core/            <-- The Single Source of Truth: Core Domain (Spring Boot 4.1.0)
+│       ├── shared/              <-- Cross-cutting structural utilities (Kernel-level common code)
+│       ├── governance/          <-- Slice 01: Active Code Governance
+│       │   ├── domain/          <-- Pure Framework-less Business Rules (Compliance axioms)
+│       │   │   ├── model/       <-- Domain entities and value objects
+│       │   │   └── port/        <-- Inbound/Outbound interface definitions
+│       │   │       └── CodeValidatorPort.java <-- Active interface rule definition
+│       │   ├── application/     <-- Use Cases (Orchestrating code enforcement loops)
+│       │   └── infrastructure/  <-- Ports & Adapters (ArchUnit engines, Spring configuration)
+│       ├── analytics/           <-- Slice 02: Predictive Forecasting (Bike Retail POS pipelines)
+│       │   ├── domain/          <-- Demand forecasts and inventory JIT cash-flow math
+│       │   ├── application/     <-- Use Cases (Calculate seasonal restocking schedules)
+│       │   └── infrastructure/  <-- Ports & Adapters (POS mock DB adapters, ledger connectors)
+│       └── legal/               <-- Slice 03: Sealed RAG Platform (Jurisprudence audit)
+│           ├── domain/          <-- Strict metadata-driven multi-tenant isolation rules
+│           ├── application/     <-- Use Cases (Contract compliance scanning, file ingestion)
+│           └── infrastructure/  <-- Ports & Adapters (On-Premise PDF extractors, local isolation)
 ```
+
+## Federated Compute & Dual-Role Client Topology
+
+The infrastructure fundamentally operates on an asymmetric distributed topology designed to completely bypass central cloud monolithic dependencies, driving remote OpEx to exactly $0 cloud tokens. The system boundary is divided into two distinct executable layers:
+
+### 1. neurodoc-ai-client (Universal Edge Engine)
+The client layer (`ai-governance`) is a zero-overhead, statically compiled binary engineered in Rust and native C. It implements an explicit **Dual-Role Execution Model** toggled via local configuration flags:
+*   **Consumer Mode (Standard Pipeline Interceptor)**: Operates seamlessly inside pre-flight CI/CD or local git hook loops. It reads the raw AST token stream from standard input (`STDIN`), extracts structured context metadata metrics, packages the manifest, and routes the encrypted transaction payload to the central sovereign orchestrator.
+*   **Worker Mode (Federated Silicon Allocation)**: Transforms the local developer machine into an active grid computing node. The native C inference sub-system (`COLIBRI`) wakes up off-heap, streaming Mixture-of-Experts (MoE) parameters directly from fast local NVMe drives. It hooks into the network cluster to consume and execute distributed execution workloads delegated by resource-constrained servers.
+
+### 2. neurodoc-ai-server (Sovereign Multi-Tenant Rector)
+The central monolithic anchor of the ecosystem orchestrated via Java 25 / Spring Boot 4.1.0. It serves as the ultimate Single Source of Truth, handling strict cross-domain Vertical Slicing isolation rules, managing cold relational persistence via PostgreSQL / pgvector, maintaining semantic workspace embeddings within localized ChromaDB instances, and acting as a central distributed compute broker that orchestrates query load-balancing across all available federated Client Workers on the mesh.
 
 ---
 
@@ -66,7 +81,7 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Private GitOps Hub (Gitea Engine):** Self-hosted Gitea service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs Gitea Actions pipelines natively, operating with full sovereignty inside the local area network.
 * **Zero-Trust Network Governance:** Edge routing secured by a Cloudflare Tunnel (cloudflared). This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
 * **Sovereign AI Ecosystem:** I am engineering [neurodoc-ai](https://github.com/caballeroluis/neurodoc-ai) — An enterprise-grade, 100% on-premise Homelab architecture designed to intercept code quality governance directly inside pre-flight CI/CD pipelines. Built via an ultra-low-overhead polyglot stack utilizing **Java/Spring Boot 4.1.0** for the core business domain orchestration, native Rust for the pipeline interceptor, and a statically linked C engine ([codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)) to manage graph context, with local semantic reasoning driven by a custom-compiled [llama.cpp](https://github.com/ggml-org/llama.cpp) runtime running [Hermes Agentic](https://github.com/NousResearch/hermes-agent) weights.
-* **High-Performance Communication Metal (gRPC-to-Panama Evolution):** See documentation on the migration to Spring Boot 4.1.0/Java 25, utilizing native gRPC for async communication and an in-process memory bridge via Project Panama for maximum AST token throughput.
+- **High-Performance Communication Metal (Project Detroit & Panama Evolution):** Migration blueprint toward Spring Boot 4.1.0 and Java 25. The architecture incorporates Oracle's Project Detroit as a native JVM wrapper, bypassing multi-process network latency by embedding real, standardized native execution engines directly within the runtime boundary: utilizing V8 for JavaScript validation and CPython for Python-based semantic tokenizing. This enables the backend-core to ingest high-performance AI data-science pipelines (NumPy, Pandas) and parse AST streams through native gRPC and Project Panama memory bridges into non-GC off-heap segments at maximum throughput with absolute data sovereignty.
 * **Memory-Constrained Massive Inference (COLIBRI Native Hub):** Integrates the COLIBRI orchestration engine to execute massive frontier LLMs (e.g., 744B parameters) under severe consumer hardware constraints (25GB RAM) with zero dedicated GPU footprint. The topology acts as an infrastructure adapter that dynamically streams model weight blocks from local NVMe storage directly into JVM non-GC off-heap memory segments on-the-fly, enabling extreme-scale reasoning locally at a strict $0 cloud token OpEx.
 * **Hybrid Integration Pipeline:** A Gitea/GitHub Self-Hosted Runner agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
 * **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
@@ -351,7 +366,25 @@ NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the
 
 ---
 
-* Have a optimization or want to propose **[IDEA-009]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+### [IDEA-009] The Polyglot In-Process Engine (Project Detroit Sandbox)
+
+#### Origin of the Idea: Real-World Infrasignment
+This architecture paradigm was conceived following the technical release of Oracle's Project Detroit in mid-2026. Traditional multi-language enterprise architectures rely on heavy out-of-process IPC (sockets, local HTTP proxies) or synthetic polyglot runtimes like GraalVM, which frequently break binary compatibility with highly optimized native C-extensions used in modern AI and data science ecosystems.
+
+- Status: Conceptual Draft / Architectural Design Phase
+- Target Flaw: Inter-process communication latency, native C-extension memory overhead, and multi-language runtime fragmentation within sovereign enterprise backends.
+
+#### The Philosophy: Unified Embedded Runtimes
+Instead of spawning detached Python or Node.js microservices to manage tokenization and semantic analysis, **NeuroDoc AI** leverages Project Detroit to embed official execution engines (CPython and V8) directly inside the JVM memory space via standard `javax.script` abstractions. The Java backend operates as a single, high-performance runtime anchor that commands Python's data-science muscle and JavaScript's agility in-process at zero network cost.
+
+#### Technical Mechanics & Isolation Layers:
+1. **In-Process Binding (javax.script Native Wrappers):** The Spring Boot 4.1.0 core initializes CPython and V8 engines within the same process boundary. Python data-science frameworks (NumPy, Pandas, TensorFlow) are invoked directly from Java threads, executing at native C-speed with 100% standard compatibility.
+2. **Zero-Copy Memory Bridging:** Tokenized data streams, Abstract Syntax Trees (AST), and vector embeddings are passed across language boundaries without serialization overhead, utilizing Java 25's Foreign Function & Memory API (Project Panama) to map shared off-heap memory segments directly into the embedded CPython layer.
+3. **Sovereign Multi-Tenant Isolation:** Script execution is bound to non-GC off-heap memory tracks. Each tenant's execution context is isolated into micro-sandboxes managed natively by the V8/CPython wrappers, ensuring strict compliance with Data Sovereignty guidelines at a flat token cost of $0.
+
+---
+
+* Have a optimization or want to propose **[IDEA-010]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
 ##  Roadmap Milestones & Horizon (In Development)
 
