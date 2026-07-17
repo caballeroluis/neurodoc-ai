@@ -69,7 +69,9 @@ The client layer (`ai-governance`) is a zero-overhead, statically compiled binar
 *   **Worker Mode (Federated Silicon Allocation)**: Transforms the local developer machine into an active grid computing node. The native C inference sub-system (`COLIBRI`) wakes up off-heap, streaming Mixture-of-Experts (MoE) parameters directly from fast local NVMe drives. It hooks into the network cluster to consume and execute distributed execution workloads delegated by resource-constrained servers.
 
 ### 2. neurodoc-ai-server (Sovereign Multi-Tenant Rector)
-The central monolithic anchor of the ecosystem orchestrated via Java 25 / Spring Boot 4.1.0. It serves as the ultimate Single Source of Truth, handling strict cross-domain Vertical Slicing isolation rules, managing cold relational persistence via PostgreSQL / pgvector, maintaining semantic workspace embeddings within localized ChromaDB instances, and acting as a central distributed compute broker that orchestrates query load-balancing across all available federated Client Workers on the mesh.
+The central monolithic anchor of the ecosystem orchestrated via Java 25 / Spring Boot 4.1.0. It serves as the ultimate Single Source of Truth, handling strict cross-domain Vertical Slicing isolation rules, managing cold relational persistence via PostgreSQL / pgvector, and maintaining semantic workspace embeddings within localized ChromaDB instances. 
+
+The architecture acts as a central distributed compute broker that orchestrates query load-balancing across all available federated Client Workers on the mesh. While the system operates 100% on local metal by default, the orchestration layer maintains native adapters to seamlessly offload high-concurrency reasoning onto remote rented infrastructure nodes (e.g., bare-metal cloud compute provisioning) running unmanaged quantized open-source weights (such as Qwen-72B or Llama-70B) in private runtime isolation servers—completely bypassing commercial proprietary cloud endpoints (e.g., Claude API dependencies), maintaining absolute code data sovereignty, and capping operational lag to absolute zero cloud telemetry.
 
 ---
 
