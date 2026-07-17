@@ -81,9 +81,8 @@ The bare-metal environment is engineered under enterprise standards to completel
 * **Private GitOps Hub (Gitea Engine):** Self-hosted Gitea service running locally as a mirror/alternative to cloud services. It coordinates internal repository trees and runs Gitea Actions pipelines natively, operating with full sovereignty inside the local area network.
 * **Zero-Trust Network Governance:** Edge routing secured by a Cloudflare Tunnel (cloudflared). This routes incoming HTTPS traffic safely and exposes traditional web services (such as Gitea web interface and backend components) without opening residential ports or revealing the host's public IP address.
 * **Sovereign AI Ecosystem:** I am engineering [neurodoc-ai](https://github.com/caballeroluis/neurodoc-ai) — An enterprise-grade, 100% on-premise Homelab architecture designed to intercept code quality governance directly inside pre-flight CI/CD pipelines. Built via an ultra-low-overhead polyglot stack utilizing **Java/Spring Boot 4.1.0** for the core business domain orchestration, native Rust for the pipeline interceptor, and a statically linked C engine ([codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp)) to manage graph context, with local semantic reasoning driven by a custom-compiled [llama.cpp](https://github.com/ggml-org/llama.cpp) runtime running [Hermes Agentic](https://github.com/NousResearch/hermes-agent) weights.
-- **High-Performance Communication Metal (Project Detroit & Panama Evolution):** Migration blueprint toward Spring Boot 4.1.0 and Java 25. The architecture incorporates Oracle's Project Detroit as a native JVM wrapper, bypassing multi-process network latency by embedding real, standardized native execution engines directly within the runtime boundary: utilizing V8 for JavaScript validation and CPython for Python-based semantic tokenizing. This enables the backend-core to ingest high-performance AI data-science pipelines (NumPy, Pandas) and parse AST streams through native gRPC and Project Panama memory bridges into non-GC off-heap segments at maximum throughput with absolute data sovereignty.
+* **High-Performance Communication Metal (Project Detroit & Panama Evolution):** Migration blueprint toward Spring Boot 4.1.0 and Java 25. The architecture incorporates Oracle's Project Detroit as a native JVM wrapper, bypassing multi-process network latency by embedding real, standardized native execution engines directly within the runtime boundary: utilizing V8 for JavaScript validation and CPython for Python-based semantic tokenizing. This enables the backend-core to ingest high-performance AI data-science pipelines (NumPy, Pandas) and parse AST streams through native gRPC and Project Panama memory bridges into non-GC off-heap segments at maximum throughput with absolute data sovereignty.
 * **Memory-Constrained Massive Inference (COLIBRI Native Hub):** Integrates the COLIBRI orchestration engine to execute massive frontier LLMs (e.g., 744B parameters) under severe consumer hardware constraints (25GB RAM) with zero dedicated GPU footprint. The topology acts as an infrastructure adapter that dynamically streams model weight blocks from local NVMe storage directly into JVM non-GC off-heap memory segments on-the-fly, enabling extreme-scale reasoning locally at a strict $0 cloud token OpEx.
-* **Hybrid Integration Pipeline:** A Gitea/GitHub Self-Hosted Runner agent integrated into the local node. It executes builds, linters, and architectural tests utilizing local compute resources to prevent third-party platform billing.
 * **Dedicated Local Inference:** Hybrid AI processing using local infrastructure mapped alongside external high-efficiency APIs. The ecosystem evaluates token-per-second throughput and context window footprints on restricted local hardware constraints to benchmark precise scalability metrics, calculating cost-to-performance ratios before provisioning larger enterprise nodes.
 * **Local-First PaaS Orchestration (Coolify & Podman Core):** To completely avoid manual runtime maintenance and eliminate third-party deployment dependencies, the entire ecosystem is orchestrated via a self-hosted `coolify` instance running natively on the Debian host. Runtimes are managed through a secure, rootless `podman` container engine, providing localized multi-tenant delivery, automated volume mapping, and internal isolated routing with absolute data privacy and zero cloud telemetry leakage.
 
@@ -384,7 +383,27 @@ Instead of spawning detached Python or Node.js microservices to manage tokenizat
 
 ---
 
-* Have a optimization or want to propose **[IDEA-010]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+### [IDEA-010] Asymmetric Cross-Context Memory Routing (Sovereign Read-Only Room Bridges)
+
+#### Origin of the Idea: Real-World Infrasignment
+This design paradigm was conceived following the architectural analysis of the open-source *exxperts* runtime engine (`EXXETA/exxperts`) engineered by Borja Odriozola in mid-2026. Standard enterprise multi-tenant Retrieval-Augmented Generation (RAG) platforms either collapse all ingestion tracks into a single, vulnerable global vector database pool or completely wall off project workspaces, preventing federated cross-domain intelligence gathering. 
+
+- **Status:** Conceptual Draft / Architectural Research Phase
+- **Target Flaw:** Data leakage in multi-tenant environments, memory contamination within multi-lingual distributed engineering squads (e.g., outsourced offshore teams), and performance bottlenecks caused by cross-context state synchronization.
+
+#### The Philosophy: Read-Only Ephemeral Bridges
+To guarantee absolute compliance with data sovereignty protocols when managing multi-client infrastructure architectures, **NeuroDoc AI** rejects the model of monolithic memory states. Instead, the ecosystem implements hermetic "Memory Rooms" orchestrated directly through Spring Boot 4.1.0 domain boundaries and isolated vector index segments inside ChromaDB. 
+
+Borrowing the core governance axioms from the *exxperts* permission model, when a complex cross-cutting query requires federated architectural insight, the central orchestrator temporarily spans an asymmetric, read-only ephemeral bridge to the secondary target memory room. Context is requested, evaluated, and piped as an in-flight metadata constraint without ever copying, migrating, or merging the physical persistence tracks between different client domains.
+
+#### Technical Mechanics & Isolation Layers:
+1. **Approval-Gated Context Rooms:** Vector collections and knowledge bases are encapsulated within independent domain slices. Every state mutation or memory-write loop triggers an isolated, approval-gated checkpoint transaction overseen by the central Java domain rule validator, eliminating silent profiling and cross-tenant pollution.
+2. **Asymmetric In-Memory Interrogation:** Leveraging the embedded polyglot capabilities introduced in **[IDEA-009]**, the core engine can spin up isolated V8/CPython threads to map read-only views of targeted memory spaces. Agent A can query the metadata layout of Agent B across an ephemeral memory bridge; the result is consumed strictly as volatile, non-persisted context.
+3. **Non-Custodial Source Auditing:** This provides major legal consulting firms and enterprise software auditors with a sealed, non-custodial framework. It allows real-time architectural compliance scanning over completely independent enterprise codebases without risking intellectual property contamination or telemetry leakage, executing at a fixed infrastructure cost of **exactly $0 cloud tokens**.
+
+---
+
+* Have a optimization or want to propose **[IDEA-011]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
 ##  Roadmap Milestones & Horizon (In Development)
 
