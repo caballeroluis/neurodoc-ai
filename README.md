@@ -91,6 +91,23 @@ The bare-metal environment is engineered under enterprise standards to completel
 
 ---
 
+## Data Ingestion & Local Connectivity
+
+To fuel the **NeuroDoc AI** analysis pipeline with medical papers, documentation, and web sources in a 100% private and offline manner, the ecosystem integrates:
+
+*   **[webclaw](https://github.com/0xMassi/webclaw)**: A fast, *local-first* web content extraction engine built in Rust. It fetches external URLs, removes all HTML clutter (ads, tracker scripts, navigation menus), and outputs **clean Markdown** optimized for LLMs. This drastically minimizes token consumption in our local VRAM environment.
+
+### Local RAG Execution Pipeline:
+
+```mermaid
+graph LR
+    URL[Internet / Web URLs] -->|webclaw extraction| MD[Clean Markdown]
+    MD -->|Ingestion Pipeline| ND[NeuroDoc AI Core]
+    ND -->|Private Analysis| Llama[(Custom llama.cpp Runtime)]
+```
+
+---
+
 ## Targeted Core Use Cases & Solved Market Flaws
 
 The ecosystem applies a *Forward Deployed Engineer* mindset by deploying highly specialized modules addressing three real-world sectors:
@@ -376,13 +393,15 @@ This architecture paradigm was conceived following the technical release of Orac
 - Status: Conceptual Draft / Architectural Design Phase
 - Target Flaw: Inter-process communication latency, native C-extension memory overhead, and multi-language runtime fragmentation within sovereign enterprise backends.
 
-#### The Philosophy: Unified Embedded Runtimes
-Instead of spawning detached Python or Node.js microservices to manage tokenization and semantic analysis, **NeuroDoc AI** leverages Project Detroit to embed official execution engines (CPython and V8) directly inside the JVM memory space via standard `javax.script` abstractions. The Java backend operates as a single, high-performance runtime anchor that commands Python's data-science muscle and JavaScript's agility in-process at zero network cost.
+The Philosophy: Unified Native Embedded Runtimes
 
-#### Technical Mechanics & Isolation Layers:
-1. **In-Process Binding (javax.script Native Wrappers):** The Spring Boot 4.1.0 core initializes CPython and V8 engines within the same process boundary. Python data-science frameworks (NumPy, Pandas, TensorFlow) are invoked directly from Java threads, executing at native C-speed with 100% standard compatibility.
-2. **Zero-Copy Memory Bridging:** Tokenized data streams, Abstract Syntax Trees (AST), and vector embeddings are passed across language boundaries without serialization overhead, utilizing Java 25's Foreign Function & Memory API (Project Panama) to map shared off-heap memory segments directly into the embedded CPython layer.
-3. **Sovereign Multi-Tenant Isolation:** Script execution is bound to non-GC off-heap memory tracks. Each tenant's execution context is isolated into micro-sandboxes managed natively by the V8/CPython wrappers, ensuring strict compliance with Data Sovereignty guidelines at a flat token cost of $0.
+Instead of spawning detached Python or Node.js microservices to manage tokenization and semantic analysis, NeuroDoc AI leverages ultra-fast embedded Rust runtimes directly at the edge boundary. The Java enterprise backend acts as a single, high-performance orchestration anchor that delegates blistering-fast stream filtering and binary parsing to native Rust components at zero memory network cost.
+
+Technical Mechanics & Isolation Layers:
+
+1. In-Process Native Boundary (Rust FFI / JNI): The Spring Boot 4.1.0 core communicates directly with native compiled Rust libraries (using `lopdf` and `tiktoken-rs`). Text parsing and token computation are processed within raw memory spaces at native C-speed with 100% type-safe compilation constraints.
+2. Zero-Copy Memory Bridging: Tokenized data streams, Abstract Syntax Trees (AST), and vector embeddings are passed across language boundaries without serialization overhead, utilizing modern zero-copy byte buffers to map shared memory segments directly into the Spring AI components.
+3. Sovereign Multi-Tenant Isolation: Script execution and RAG document streams are bound to highly-optimized, off-heap native memory tracks managed natively by Rust. Each runtime context is isolated into micro-sandboxes, ensuring strict compliance with Data Sovereignty guidelines at a flat token cost of $0.
 
 ---
 
