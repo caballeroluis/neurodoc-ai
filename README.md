@@ -451,44 +451,51 @@ This R&D avenue explores the integration of advanced open-source quantization ab
 
 ## Future Architectural Aspirations (Long-Term Demo Target)
 
-- [ ] **Target Demo 01: The Router Firewall Fallback & Hardware Boot**
+- [ ] **Target Demo 01: The Out-of-Memory Storage Engine Saturation (The 20-Cycle Task Test)**
+
+  * **The Setup:** Load a massive dataset of 160 GB of unstructured code repos, vector embeddings, and documentation inside the `neurodoc-ai` storage backend running on a constrained 16GB RAM hardware node (a 10× out-of-memory factor).
+  * **The Chaos:** Trigger concurrent lookups and contract audits simultaneously from 64 autonomous agents, forcing massive, unbuffered random read operations on the persistent secondary storage.
+    - **The Hexagonal Recovery:** Instead of crashing the cluster with an Operating System Out-Of-Memory (OOM) fault or slowing down due to kernel thread context switching, the core domain switches dynamically to our low-overhead storage engine parameters. It bypasses the Linux page cache via `O_DIRECT`, forces **atomic 4 KB page granularities** to reduce I/O amplification, and drops thread management down to **user-space cooperative multitasking** (using Rust async executors).
+    - **The Target:** Prove that the worker threads can switch contexts deep in the call stack in just **~20 CPU cycles** (instead of thousands of kernel cycles), saturating the physical NVMe SSD array up to its maximum hardware capability (achieving millions of IOPS) while keeping the host RAM completely stable under 16GB.
+
+- [ ] **Target Demo 02: The Router Firewall Fallback & Hardware Boot**
   * **The Setup:** Open the IDE and stream an active development prompt directed at a commercial cloud LLM endpoint.
   * **The Chaos:** Live-drop a firewall block ruleset directly inside the residential router interface to trigger an instant `Connection Refused` error on the cloud API.
   * **The Hexagonal Recovery:** The core domain intercepts the network timeout exception and fires an automated UDP Magic Packet—triggering either **Wake-on-LAN (WoL)** or **Wake-on-WAN (WoW)** depending on the node's network location. This boots the offline server host and seamlessly routes the context payload directly to the local custom-compiled `llama.cpp` / `Hermes Agentic` runtime.
   * **The Target:** Zero changes required on the developer's prompt or IDE configuration—true infrastructure decoupling via interchangeable adapters.
 
-- [ ] **Target Demo 02: Crowdsourced VRAM Failover Grid**
+- [ ] **Target Demo 03: Crowdsourced VRAM Failover Grid**
   * **The Setup:** Simulate an incoming traffic spike by triggering 10 simultaneous repository push events (multi-user git diff streams).
   * **The Chaos:** Artificially saturate the memory constraints (OOM boundary) of a single employee's local development machine.
   * **The Recovery:** The centralized Go orchestrator dynamically opens outbound Cloudflare Tunnels toward active node rigs (e.g., a distributed RTX 3090 setup), partitioning the query load concurrently through **vLLM PagedAttention** over residential broadband latency.
 
-- [ ] **Target Demo 03: Real-Time Governance Shift (The Junior Anti-Malpractice Gate)**
+- [ ] **Target Demo 04: Real-Time Governance Shift (The Junior Anti-Malpractice Gate)**
   * **The Setup:** A junior developer uses commercial generative AI assistants to aggressively inject code, inadvertently introducing bad practices, coupling anomalies, or architectural drift.
   * **The Action:** A senior architect drops a brand-new markdown style guide or infrastructure layout standard inside the local `/docs` folder. 
   * **The Enforcement:** The local semantic knowledge graph engine (`Graphify`) parses and indexes the update instantly into explicitly typed conceptual relations. On the very next git push event, the native Rust interceptor captures the delta stream, validates the structural AST against the fresh architectural axioms, and automatically rejects the commit. The junior is instantly blocked from deploying anti-patterns without requiring manual senior code review.
 
-- [ ] **Target Demo 04: The Environmental Memory Graph Sync (For Software Developers)**
+- [ ] **Target Demo 05: The Environmental Memory Graph Sync (For Software Developers)**
     - **The Setup:** Open separate isolated development environments across a highly complex repository mesh with evolving microservices modules.
     - **The Action:** The developer prompts the local agent tool to refactor a legacy hexagonal port interface. Instead of generating generic boilerplate, the integrated MCP server layer queries the dual-topology graph pipeline concurrently. It resolves strict code layouts via the native C-MCP engine (`codebase-memory-mcp`) while pulling architectural guidelines from the semantic concept mesh (`Graphify`).
     - **The Target:** Eliminate cross-tool context blindness and feed the IDE context window instantly with precise call-graph dependencies and explicit compliance rules. Achieve a 99% reduction in prompt token consumption by avoiding flat, file-by-file text scraping and replacing traditional read loops with targeted graph diffusion before core model inference.
 
-- [ ] **Target Demo 05: The Seasonal Parts Restocking Simulator (For Bike Shops)**
+- [ ] **Target Demo 06: The Seasonal Parts Restocking Simulator (For Bike Shops)**
   * **The Setup:** Connect a local point-of-sale (POS) mock database containing 3 years of workshop repair tickets and groupset inventory history.
   * **The Chaos:** Simulate an overnight pricing volatility surge or supply chain bottleneck from major component manufacturers right before the seasonal repair peak.
   * **The Recovery:** The GPU-accelerated analytical engine running native JNI/cuDF bindings executes localized predictive forecasting over the tokenized data. It generates an optimized, prioritized JIT procurement schedule directly to the workshop's ledger, preventing active capital immobilization in low-turnover items.
 
-- [ ] **Target Demo 06: Zero-Knowledge Jurisprudence Audit (For Legal Consulting Firms)**
+- [ ] **Target Demo 07: Zero-Knowledge Jurisprudence Audit (For Legal Consulting Firms)**
   * **The Setup:** Ingest 10,000 pages of sensitive, highly confidential corporate contracts and jurisprudence data inside the local network perimeter.
   * **The Action:** Run a deep compliance and audit query from an external legal workstation targeting the local model endpoint.
   * **The Security:** The metadata-driven multi-tenant layer completely seals the request. The integrated semantic knowledge graph navigates the non-linear network topology of the unstructured text, verifying clauses through conceptual connections without public cloud data leakage. The entire graph query loop and local LLM inference (`llama.cpp`) occur strictly within the physical boundaries of the local bare-metal server.
   
-- [ ] **Target Demo 07: The Microservices Extraction & Commercial Packaging Gate (For B2B Enterprise Ventures)**
+- [ ] **Target Demo 08: The Microservices Extraction & Commercial Packaging Gate (For B2B Enterprise Ventures)**
   * **The Setup:** A client (e.g., a Major Legal Consulting Firm) requests to license exclusively the On-Premise Sealed RAG framework, explicitly demanding the total removal of unrelated operational modules (such as Developer Governance or Bike Retail Predictive Analytics).
   * **The Action:** The engineer triggers a localized build extraction. Without refactoring, modifying, or rewriting a single line of core business logic, the outer technical layer unplugs the `governance` and `analytics` vertical slices from the repository tree.
   * **The Recovery via Hexagonal Design:** Because the system enforces strict **Vertical Slicing** and domain-level boundary isolation inside Spring Boot 3, the independent `legal` module coupled with the `shared` structural kernel remains completely functional. The package compiles immediately as a standalone, lightweight, single-tenant or multi-tenant deployment artifact ready for client delivery.
   * **The Target:** Prove zero cross-domain coupling and absolute architectural portability, converting a decentralized monorepo into modular, highly-monetizable enterprise assets in minutes.
 
-- [ ] **Target Demo 08: The Transatlantic Time-Zone VRAM Sharing Gate (For Intra-Continental SMEs)**
+- [ ] **Target Demo 09: The Transatlantic Time-Zone VRAM Sharing Gate (For Intra-Continental SMEs)**
   * **The Setup:** Two independent companies operating on identical Hexagonal implementations of NeuroDoc AI are located in different continents (e.g., Madrid, Spain and Bogotá, Colombia), creating a natural 5-to-7-hour time-zone offset.
   * **The Chaos:** Expensive multi-GPU rigs sit idle and underutilized overnight in Spain while the Colombian office faces heavy, concurrent mid-day agentic workloads that saturate local hardware constraints.
   * **The Recovery via Hexagonal Design:** The immutable core domain detects the regional shift automatically via network latency or clock telemetry timeouts. Because the business logic is strictly decoupled behind an abstract outbound adapter layer (Ports/Adapters), the system triggers an agile, automated hot-swap event. It detaches the offline European node infrastructure and instantly plugs in the transatlantic P2P compute fabric (`Exo/Podman mesh`) as the active resource adapter, scaling or shedding VRAM capacities in milliseconds without modifying a single line of core code.
