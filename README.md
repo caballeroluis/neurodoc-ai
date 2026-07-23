@@ -1,5 +1,5 @@
 # NeuroDoc AI • Next-Gen Hybrid Infrastructure & AI Governance
-> **Enterprise Homelab Architecture for Autonomous Sovereign Code Governance** (In Brainstorming Phase)
+> **An open-source hybrid AI engineering platform that lets developers combine local LLMs and frontier models inside a governed SDLC.** (In Brainstorming Phase)
 
 ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
 ![Gitea](https://img.shields.io/badge/Gitea-34495E?style=for-the-badge&logo=gitea&logoColor=5D9425)
