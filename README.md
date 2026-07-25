@@ -452,7 +452,22 @@ This R&D avenue explores the integration of advanced open-source quantization ab
 
 ---
 
-* Have a optimization or want to propose **[IDEA-012]**? Open an Issue or submit a Pull Request to pitch your design framework.*
+### [IDEA-012] The Hexagonal AI-DLC Harness: Shifting from Sprints to "Bolts"
+
+- **Status**: Conceptual Specification / Methodological Design
+- **Target Bottleneck**: The validation trap and "vibe coding" decay in autonomous agent lifecycles.
+
+#### The Philosophy: Spec-Driven Team Construction
+Embracing the AI-Driven Development Lifecycle (AI-DLC) framework recently introduced by AWS. Instead of managing routine code generation via decoupled conversational windows ("vibe coding"), the system anchors execution around immutable architectural specifications (the core domain) as team-validated contracts.
+
+#### Technical Mechanics
+1. **The Bolt Execution Frame**: Traditional two-week sprints are replaced by "Bolts" (ultra-fast, localized execution windows lasting minutes or hours). Specialized sub-agents spawn inside isolated local Git worktrees to independently solve atomic Units of Work (decoupled domain layers).
+2. **Pre-Flight AST Verification (Rust Gatekeeper)**: Before any agentic code proposal is merged, the native client (`ai-governance`) intercepts the local commit stream (`STDIN`). It parses the Abstract Syntax Tree (AST) to strictly verify alignment against the outbound hexagonal ports, enforcing a compile-time "Mob Elaboration" gate without internet dependencies.
+3. **Infrastructure-Aware Operations**: The orchestration layer injects real-time hardware constraints (local VRAM thresholds, thermal telemetry, and hardware efficiency parameters) back into the prompt context ancestry, ensuring that generated solutions are optimized for the active hardware tier.
+
+---
+
+* Have a optimization or want to propose **[IDEA-013]**? Open an Issue or submit a Pull Request to pitch your design framework.*
 
 ##  Roadmap Milestones & Horizon (In Development)
 
