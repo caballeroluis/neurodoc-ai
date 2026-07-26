@@ -380,22 +380,22 @@ NeuroDoc AI treats autonomous delegated agents as inherently volatile. While the
 3. **Immutable Prompt Assertions**: Enforces strict compile-time template boundaries that prevent multi-agent or third-party binaries from rewriting system invariants at a flat token cost of $0.
 
 ---
+### [IDEA-008] Bare-Metal Hardware Actuation Mesh & Lightpanda Browser Sandbox
 
-### [IDEA-008] Bare-Metal Hardware Actuation Mesh (Sovereign KVM Isolation & Enterprise Compliance Enclosure)
+- **Status**: Conceptual Draft / Integrated Architectural Design Phase
+- **Target Flaw**: Software-defined container escapes, compute overhead of local guest hypervisors, total endpoint security blindness during pre-boot states (BIOS/UEFI manipulation or unauthorized Live-USB ingestion), and resource-heavy Chromium/Headless Chrome memory bloating.
 
-- **Status**: Conceptual Draft / Architectural Design Phase
-- **Target Flaw**: Software-defined container escapes, compute overhead of local guest hypervisors, and total endpoint security blindness during pre-boot states (BIOS/UEFI manipulation or unauthorized Live-USB ingestion).
-
-#### Architectural Advantages vs Single-VM Isolation:
-* **Zero Resource Tax**: Offloads 100% of the agent actuation load to detached secondary hardware, saving host CPU/VRAM threads to run deep **Mixture of Experts (MoE)** models locally.
+#### Architectural Advantages & Sandboxing:
+* **Zero Resource Tax & Lightpanda Integration**: Offloads 100% of the agent actuation load to detached secondary hardware, saving host CPU/VRAM threads to run deep **Mixture of Experts (MoE)** models locally. When web automation is required, it leverages [lightpanda](https://github.com/lightpanda-io/browser) (Zig-based, zero-graphical) to reduce headless browsing memory by 16x and accelerate task execution by 9x.
 * **True Physical Air-Gapping**: Eliminates hypervisor escape vectors by removing shared kernels, shared memory, and software virtualization layers from the primary host.
 * **Pre-Boot & Bare-Metal Audit Rail**: Monitors target devices independently of the client OS status, capturing states continuously even during firmware access or external boot overrides.
+* **Sovereign Ingestion**: Uses pre-compiled, token-free PandaScripts for deterministic web actions, eliminating runtime LLM costs and multi-tenant context blindness.
 
 #### Technical Mechanics & Hardware Actuation:
 1. **Physical Input Injection**: The orchestrator has no direct file-system connection to the target machine. Instructions are translated into mechanical Keyboard/Video/Mouse (KVM) signals over a microcontroller (`NanoKVM-Go`), typing and clicking on the target metal via network-bound hardware emulation.
 2. **Visual Feedback Loop (Pixel-Native Ingestion)**: The native Rust engine orchestrates screen analysis by leveraging a pixel-native retrieval architecture (inspired by Berkeley's `StarTrail-org/PixelRAG`). By streaming local frame captures directly into a localized Qwen3-VL-Embedding vision space, the system cross-references state changes and terminal layouts purely on raw pixel data, bypassing application-layer log injection vectors and hidden runtime rootkits.
-3. **Hardware-Level Blast Radius**: Any compromise remains physically trapped inside the secondary piece of hardware. The master orchestrator trips power relays to hard-reset, isolate, or reflash the target device in milliseconds, ensuring a 0% structural risk to the core **master Debian host**.
-
+3. **Session Isolation & Hardware Blast Radius**: Utilizes dedicated Lightpanda MCP ports with strict unique session IDs (`Mcp-Session-Id`) to isolate concurrent scraping tasks. Any physical compromise remains trapped inside the secondary hardware. The master orchestrator trips hardware power relays to hard-reset, isolate, or reflash the target device in milliseconds, ensuring a 0% structural risk to the core **master Debian host**.
+ 
 ---
 
 ### [IDEA-009] The Polyglot In-Process Engine (Project Detroit Sandbox)
