@@ -1,5 +1,12 @@
 # NeuroDoc AI • Next-Gen Hybrid Infrastructure & AI Governance
-> **An open-source hybrid AI engineering platform that lets developers combine local LLMs and frontier models inside a governed SDLC.** (In Brainstorming Phase)
+> **An open-source hybrid AI engineering platform that lets developers combine local LLMs and frontier models inside a governed SDLC.**
+
+> [!IMPORTANT]
+> **Project Status:** Brainstorming & Active Research
+>
+> NeuroDoc AI is currently in the research and architectural design phase.
+>
+> This repository documents the target architecture, design decisions, and engineering direction of the project. Unless explicitly stated otherwise, diagrams, workflows, and architectural descriptions should be interpreted as the intended design rather than completed implementations. The project evolves incrementally as ideas are validated through prototypes and experiments.
 
 ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white)
 ![Gitea](https://img.shields.io/badge/Gitea-34495E?style=for-the-badge&logo=gitea&logoColor=5D9425)
@@ -66,7 +73,7 @@ The infrastructure fundamentally operates on an asymmetric distributed topology 
 ### 1. neurodoc-ai-client (Universal Edge Engine)
 The client layer (`ai-governance`) is a zero-overhead, statically compiled binary engineered in Rust and native C. It implements an explicit **Dual-Role Execution Model** toggled via local configuration flags:
 *   **Consumer Mode (Standard Pipeline Interceptor)**: Operates seamlessly inside pre-flight CI/CD or local git hook loops. It reads the raw AST token stream from standard input (`STDIN`), extracts structured context metadata metrics, packages the manifest, and routes the encrypted transaction payload to the central sovereign orchestrator.
-*   **Worker Mode (Federated Silicon Allocation)**: Transforms the local developer machine into an active grid computing node. The native C inference sub-system (`COLIBRI`) wakes up off-heap, streaming Mixture-of-Experts (MoE) parameters directly from fast local NVMe drives. It hooks into the network cluster to consume and execute distributed execution workloads delegated by resource-constrained servers.
+*   **Worker Mode (Federated Silicon Allocation)**: Transforms the local developer machine into an active grid computing node. The native Rust/C inference sub-system wakes up off-heap, streaming layers natively. Inspired by the open-source hardware-software co-design of advanced asynchronous compiler stacks (specifically referencing the MLIR-based graph pipeline in Tenstorrent's [tt-forge](https://github.com/tenstorrent/tt-forge) architecture), the platform avoids the overhead of global hardware schedulers. Instead, the runtime pre-maps and balances the entire semantic data journey inside the local code compiler before the processing layers turn on. It fetches precise context blocks directly into isolated memory slots right before inference, aiming to mitigate token bottlenecks and allowing resource-constrained servers to act as a single, unified local brain at a flat operational cost of $0 cloud tokens.
 
 ### 2. neurodoc-ai-server (Sovereign Multi-Tenant Rector)
 The central monolithic anchor of the ecosystem orchestrated via Java 25 / Spring Boot 4.1.0. It serves as the ultimate Single Source of Truth, handling strict cross-domain Vertical Slicing isolation rules, managing cold relational persistence via PostgreSQL / pgvector, and maintaining semantic workspace embeddings within localized ChromaDB instances. 
